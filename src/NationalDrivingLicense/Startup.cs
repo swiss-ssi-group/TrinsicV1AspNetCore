@@ -27,6 +27,8 @@ namespace NationalDrivingLicense
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddScoped<TrinsicCredentialsProvider>();
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
