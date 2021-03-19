@@ -33,7 +33,7 @@
                             @if ((AuthorizationService.AuthorizeAsync(User, "TwoFactorEnabled")).Result.Succeeded)
                             {
                                 <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Admin">Admin</a>
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/Admin">License Administration</a>
                                 </li>
                             }
                             else
@@ -48,7 +48,7 @@
                                        data-placement="bottom"
                                        title="MFA is NOT enabled. This is required for the Admin Page. If you have activated MFA, then logout, login again.">
                                         <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                                        Admin
+                                        License Administration
                                     </a>
 
                                 </li>

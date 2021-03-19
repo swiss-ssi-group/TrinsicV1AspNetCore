@@ -30,6 +30,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
             }
 
             var driverLicence = await _context.DriverLicences.FirstOrDefaultAsync(m => m.Id == id);
+
             DriverLicence = new UpdateDriverLicence
             {
                 Id = driverLicence.Id,
@@ -72,7 +73,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
                 }
             }
 
-            return RedirectToPage($"./User?id={DriverLicence.UserName}");
+            return RedirectToPage($"./DriverLicenses/User?id={toSave.UserName}");
         }
 
         private bool DriverLicenceExists(Guid id)

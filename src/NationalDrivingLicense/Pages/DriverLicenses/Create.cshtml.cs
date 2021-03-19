@@ -10,6 +10,8 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
     {
         private readonly ApplicationDbContext _context;
         public string UserName { get; set; }
+        [BindProperty]
+        public DriverLicence DriverLicence { get; set; }
 
         public CreateModel(ApplicationDbContext context)
         {
@@ -26,9 +28,6 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
 
             return Page();
         }
-
-        [BindProperty]
-        public DriverLicence DriverLicence { get; set; }
 
         public async Task<IActionResult> OnPostAsync()
         {
