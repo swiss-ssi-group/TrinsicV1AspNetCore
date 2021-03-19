@@ -28,18 +28,18 @@ namespace NationalDrivingLicense
 
         public async Task<bool> HasIdentityDriverLicense(string username)
         {
-            if(_driverLicence != null)
+            if (_driverLicence != null)
             {
                 return true;
             }
 
-            if(!string.IsNullOrEmpty(username))
+            if (!string.IsNullOrEmpty(username))
             {
                 var driverLicence = await _applicationDbContext.DriverLicences.FirstOrDefaultAsync(
                     dl => dl.UserName == username && dl.Valid == true
                 );
 
-                if(driverLicence != null)
+                if (driverLicence != null)
                 {
                     // cache this in the service (scoped service)
                     _driverLicence = driverLicence;
@@ -52,12 +52,12 @@ namespace NationalDrivingLicense
 
         public async Task<string> GetDriverLicenseCredential(string username)
         {
-            if(!await HasIdentityDriverLicense(username))
+            if (!await HasIdentityDriverLicense(username))
             {
                 throw new ArgumentException("user has no valid driver license");
             }
 
-            if(!string.IsNullOrEmpty(_driverLicence.DriverLicenceCredentials))
+            if (!string.IsNullOrEmpty(_driverLicence.DriverLicenceCredentials))
             {
                 return _driverLicence.DriverLicenceCredentials;
             }
@@ -74,12 +74,12 @@ namespace NationalDrivingLicense
 
             CredentialContract credential = await _credentialServiceClient
                 .CreateCredentialAsync(new CredentialOfferParameters
-            {
-                DefinitionId = _configuration["Trinsic:TemplateDefinitionId"],
-                ConnectionId = connectionId,
-                AutomaticIssuance = automaticIssuance,
-                CredentialValues = credentialValues
-            });
+                {
+                    DefinitionId = _configuration["Trinsic:TemplateDefinitionId"],
+                    ConnectionId = connectionId,
+                    AutomaticIssuance = automaticIssuance,
+                    CredentialValues = credentialValues
+                });
 
             _driverLicence.DriverLicenceCredentials = credential.OfferUrl;
             _applicationDbContext.DriverLicences.Update(_driverLicence);
@@ -89,5 +89,5 @@ namespace NationalDrivingLicense
         }
     }
 
-     
+
 }

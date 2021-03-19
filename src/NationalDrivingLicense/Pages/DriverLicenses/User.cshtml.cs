@@ -18,7 +18,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
             _context = context;
         }
 
-        public IList<DriverLicence> DriverLicence { get;set; }
+        public IList<DriverLicence> DriverLicence { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
