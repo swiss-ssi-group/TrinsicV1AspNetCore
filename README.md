@@ -1,4 +1,4 @@
-# Self sovereign idenitites
+# Self Sovereign Identity (SSI)
 
 ## Links
 
