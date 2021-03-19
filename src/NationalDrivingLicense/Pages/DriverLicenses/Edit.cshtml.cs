@@ -73,7 +73,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
                 }
             }
 
-            return RedirectToPage($"./DriverLicenses/User?id={toSave.UserName}");
+            return RedirectToPage("./User", new{ id = toSave.UserName});
         }
 
         private bool DriverLicenceExists(Guid id)

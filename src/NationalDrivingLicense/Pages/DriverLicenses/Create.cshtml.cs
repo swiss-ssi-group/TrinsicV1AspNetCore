@@ -42,7 +42,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
             _context.DriverLicences.Add(DriverLicence);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage($"./User?id={DriverLicence.UserName}");
+            return RedirectToPage("./User", new { id = DriverLicence.UserName });
         }
     }
 }
