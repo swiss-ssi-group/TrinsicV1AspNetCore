@@ -1,6 +1,5 @@
 ﻿using System;
 using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NationalDrivingLicense.Data
 {
@@ -16,5 +15,6 @@ namespace NationalDrivingLicense.Data
         public string Issuedby { get; set; }
         public bool Valid { get; set; }
         public string DriverLicenceCredentials { get; set; }
-    }
+        public string LicenseType { get; set; }
+}
 }
