@@ -1,0 +1,10 @@
+﻿@page
+
+@model Insurance.Pages.SignUpModel
+
+@{
+    ViewData["Title"] = "Home page";
+}
+
+<p>@Model.VerificationId</p>
+<img alt="QR Code" src="@($"https://chart.googleapis.com/chart?cht=qr&chl={Model.VerificationRequestUrl}&chs=300x300&chld=L|1")"/>
