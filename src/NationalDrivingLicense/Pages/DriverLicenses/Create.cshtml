@@ -1,0 +1,57 @@
+﻿@page
+@model NationalDrivingLicense.Pages.DriverLicenses.CreateModel
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<h4>Create Driver Licence</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form method="post">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label class="control-label">@Model.UserName</label>
+                <input type="hidden" asp-for="DriverLicence.UserName" value="@Model.UserName" />
+                <input type="hidden" value="@Model.UserName" />
+            </div>
+            <div class="form-group">
+                <label asp-for="DriverLicence.Name" class="control-label"></label>
+                <input asp-for="DriverLicence.Name" class="form-control" />
+                <span asp-validation-for="DriverLicence.Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DriverLicence.FirstName" class="control-label"></label>
+                <input asp-for="DriverLicence.FirstName" class="form-control" />
+                <span asp-validation-for="DriverLicence.FirstName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DriverLicence.DateOfBirth" class="control-label"></label>
+                <input asp-for="DriverLicence.DateOfBirth" class="form-control" />
+                <span asp-validation-for="DriverLicence.DateOfBirth" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DriverLicence.LicenseType" class="control-label"></label>
+                <input asp-for="DriverLicence.LicenseType" class="form-control" />
+                <span asp-validation-for="DriverLicence.LicenseType" class="text-danger"></span>
+            </div>
+            <div class="form-group form-check">
+                <label class="form-check-label">
+                    <input class="form-check-input" asp-for="DriverLicence.Valid" /> @Html.DisplayNameFor(model => model.DriverLicence.Valid)
+                </label>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-page="User" asp-route-id="@Model.UserName">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

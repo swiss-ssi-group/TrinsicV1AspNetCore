@@ -47,6 +47,25 @@ namespace NationalDrivingLicense.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "DriverLicences",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    UserName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    IssuedAt = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    DateOfBirth = table.Column<DateTimeOffset>(type: "datetimeoffset", nullable: false),
+                    Issuedby = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Valid = table.Column<bool>(type: "bit", nullable: false),
+                    DriverLicenceCredentials = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DriverLicences", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
@@ -208,6 +227,9 @@ namespace NationalDrivingLicense.Migrations
 
             migrationBuilder.DropTable(
                 name: "AspNetUserTokens");
+
+            migrationBuilder.DropTable(
+                name: "DriverLicences");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");
