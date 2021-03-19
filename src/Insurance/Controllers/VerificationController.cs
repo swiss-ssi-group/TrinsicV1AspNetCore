@@ -22,7 +22,10 @@ namespace Insurance.Controllers
         public async Task<IActionResult> CheckStatus(string verificationId)
         {
             var verificationState = await _diversLicenseVerificationService.GetVerificationState(verificationId);
-            return Ok(new { state = "accepted" });
+
+            // IDEA: After we have verified the user we could create an account for him
+             
+            return Ok(new { state = verificationState });
         }
 
         [HttpGet]
