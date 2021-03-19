@@ -1,3 +1,4 @@
+using FluffySpoon.AspNet.NGrok;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -25,6 +26,7 @@ namespace Insurance
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
+                    webBuilder.UseNGrok();
                 });
     }
 }

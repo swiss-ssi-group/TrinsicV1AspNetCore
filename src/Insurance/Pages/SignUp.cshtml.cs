@@ -24,6 +24,11 @@ namespace Insurance.Pages
 
         public async Task OnGet()
         {
+            await _credentialsService.CreateCredentialAsync(new Trinsic.ServiceClients.Models.CredentialOfferParameters
+            {
+                
+            });
+
             //var verificationContract = await _credentialsService.CreateVerificationFromPolicyAsync(PolicyId);
             //VerificationRequestUrl = verificationContract.VerificationRequestUrl;
             //VerificationId = verificationContract.VerificationId;

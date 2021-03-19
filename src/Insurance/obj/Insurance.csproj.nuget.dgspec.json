@@ -40,6 +40,10 @@
         "net5.0": {
           "targetAlias": "net5.0",
           "dependencies": {
+            "FluffySpoon.AspNet.NGrok": {
+              "target": "Package",
+              "version": "[1.75.0, )"
+            },
             "Trinsic.ServiceClients": {
               "target": "Package",
               "version": "[1.1.5018, )"
