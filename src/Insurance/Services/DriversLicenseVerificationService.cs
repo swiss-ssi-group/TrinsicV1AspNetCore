@@ -1,4 +1,4 @@
-﻿using System;
+﻿using Microsoft.Extensions.Configuration;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Trinsic.ServiceClients;
@@ -11,10 +11,10 @@ namespace Insurance.Services
         private readonly ICredentialsServiceClient _credentialsServiceClient;
         private readonly string _issuerDid;
 
-        public DriversLicenseVerificationService(ICredentialsServiceClient credentialsServiceClient)
+        public DriversLicenseVerificationService(ICredentialsServiceClient credentialsServiceClient, IConfiguration configuration)
         {
             _credentialsServiceClient = credentialsServiceClient;
-            _issuerDid = ""; // TODO: Get this from the user secrets
+            _issuerDid = configuration["Trinsic:DMV:DID"];
         }
 
         public async Task<(string verificationId, string verificationUrl)> CreateVerificationRequest()
@@ -27,7 +27,7 @@ namespace Insurance.Services
                     PolicyName = "Driver License Policy", // Name for policy
                     AttributeNames = new List<string>()
                     {
-                        "FirstName" 
+                        "Full Name"
                     }, // List of names of attributes to request
                     Restrictions = new List<VerificationPolicyRestriction>()
                     {
@@ -63,7 +63,7 @@ namespace Insurance.Services
                     Name = "Driver License Verification",
                     Version = "1.0", // Must follow Semantic Versioning scheme (https://semver.org),
                     Attributes = attributePolicies,
-                    RevocationRequirement = revocationRequirement
+                    // RevocationRequirement = revocationRequirement
                 });
 
             return (verificationId: verificationContract.VerificationId, verificationUrl: verificationContract.VerificationRequestUrl);
@@ -72,7 +72,7 @@ namespace Insurance.Services
         public async Task<string> GetVerificationState(string verificationId)
         {
             var verificationContract = await _credentialsServiceClient.GetVerificationAsync(verificationId);
-            return verificationContract.State;
+            return verificationContract.State.ToLower();
         }
     }
 
