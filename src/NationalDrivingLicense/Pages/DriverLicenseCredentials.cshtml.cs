@@ -18,8 +18,10 @@ namespace NationalDrivingLicense.Pages
         }
         public async Task OnGetAsync()
         {
-            // var data = await _trinsicCredentialsProvider.GetDriverLicenseCredential();
-            //CredentialOfferUrl = data.OfferUrl;
+            var offerUrl = await _trinsicCredentialsProvider
+                .GetDriverLicenseCredential(HttpContext.User.Identity.Name);
+
+            CredentialOfferUrl = offerUrl;
         }
     }
 }

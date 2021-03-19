@@ -8,7 +8,7 @@ namespace NationalDrivingLicense.Data
     {
         [Key]
         public Guid Id { get; set; }
-        public Guid ApplicationUserId { get; set; }
+        public string UserName { get; set; }
         public ApplicationUser ApplicationUser { get; set; }
         public DateTimeOffset IssuedAt { get; set; }
         public string Name { get; set; }
