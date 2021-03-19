@@ -9,10 +9,12 @@ namespace Insurance.Services
     public class DriversLicenseVerificationService
     {
         private readonly ICredentialsServiceClient _credentialsServiceClient;
+        private readonly string _issuerDid;
 
         public DriversLicenseVerificationService(ICredentialsServiceClient credentialsServiceClient)
         {
             _credentialsServiceClient = credentialsServiceClient;
+            _issuerDid = ""; // TODO: Get this from the user secrets
         }
 
         public async Task<(string verificationId, string verificationUrl)> CreateVerificationRequest()
@@ -22,23 +24,26 @@ namespace Insurance.Services
             {
                 new VerificationPolicyAttributeContract()
                 {
-                    PolicyName = "Attribute A Attribute Policy", // Name for policy
-                    AttributeNames = new List<string>() {"Attribute A"}, // List of names of attributes to request
+                    PolicyName = "Driver License Policy", // Name for policy
+                    AttributeNames = new List<string>()
+                    {
+                        "FirstName" 
+                    }, // List of names of attributes to request
                     Restrictions = new List<VerificationPolicyRestriction>()
                     {
                         new VerificationPolicyRestriction
                         {
-                            SchemaId = "schemaId", // Optionally restrict by schema identifier
-                            SchemaIssuerDid = "schemaIssuerDid", // Optionally restrict by schema issuer identifier
-                            SchemaName = "schemaName", // Optionally restrict by schema name
-                            SchemaVersion = "schemaVersion", // Optionally restrict by schema version
-                            IssuerDid = "issuerDid", // Optionally restrict by issuer identifier
-                            CredentialDefinitionId = "credentialDefinitionId", // Optionally restrict by credential definition identifier
-                            Value = new VerificationPolicyRestrictionAttribute
-                            {
-                                AttributeName = "attributeName", // Name of attribute to restrict
-                                AttributeValue = "attributeValue", // Value of attribute to restrict
-                            }
+                            //SchemaId = "schemaId", // Optionally restrict by schema identifier
+                            //SchemaIssuerDid = "schemaIssuerDid", // Optionally restrict by schema issuer identifier
+                            //SchemaName = "schemaName", // Optionally restrict by schema name
+                            //SchemaVersion = "schemaVersion", // Optionally restrict by schema version
+                            IssuerDid = _issuerDid, // Optionally restrict by issuer identifier
+                            //CredentialDefinitionId = "credentialDefinitionId", // Optionally restrict by credential definition identifier
+                            //Value = new VerificationPolicyRestrictionAttribute
+                            //{
+                            //    AttributeName = "attributeName", // Name of attribute to restrict
+                            //    AttributeValue = "attributeValue", // Value of attribute to restrict
+                            //}
                         }
                     }
                 }
@@ -55,7 +60,7 @@ namespace Insurance.Services
             var verificationContract = await _credentialsServiceClient.CreateVerificationFromParametersAsync(
                 new VerificationPolicyParameters
                 {
-                    Name = "Drivers License Verification",
+                    Name = "Driver License Verification",
                     Version = "1.0", // Must follow Semantic Versioning scheme (https://semver.org),
                     Attributes = attributePolicies,
                     RevocationRequirement = revocationRequirement
