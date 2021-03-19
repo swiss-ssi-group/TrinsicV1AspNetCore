@@ -31,10 +31,10 @@ namespace NationalDrivingLicense
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddIdentity<ApplicationUser, IdentityRole>(
-                options => options.SignIn.RequireConfirmedAccount = false)
-             .AddEntityFrameworkStores<ApplicationDbContext>()
-             .AddDefaultTokenProviders();
+            services.AddIdentity<ApplicationUser, IdentityRole>()
+               .AddDefaultTokenProviders()
+               .AddDefaultUI()
+               .AddEntityFrameworkStores<ApplicationDbContext>();
 
             services.AddRazorPages();
         }
