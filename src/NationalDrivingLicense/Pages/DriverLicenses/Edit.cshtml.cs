@@ -30,6 +30,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
             }
 
             var driverLicence = await _context.DriverLicences.FirstOrDefaultAsync(m => m.Id == id);
+
             DriverLicence = new UpdateDriverLicence
             {
                 Id = driverLicence.Id,
@@ -46,8 +47,6 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
             return Page();
         }
 
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see https://aka.ms/RazorPagesCRUD.
         public async Task<IActionResult> OnPostAsync()
         {
             if (!ModelState.IsValid)
@@ -74,7 +73,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
                 }
             }
 
-            return RedirectToPage("./Index");
+            return RedirectToPage("./User", new{ id = toSave.UserName});
         }
 
         private bool DriverLicenceExists(Guid id)

@@ -1,4 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using NationalDrivingLicense.Data;
 using System;
 using System.Collections.Generic;
@@ -12,13 +13,17 @@ namespace NationalDrivingLicense
     {
         private readonly ICredentialsServiceClient _credentialServiceClient;
         private readonly ApplicationDbContext _applicationDbContext;
+        private readonly IConfiguration _configuration;
+
         private DriverLicence _driverLicence { get; set; }
 
         public TrinsicCredentialsProvider(ICredentialsServiceClient credentialServiceClient,
-            ApplicationDbContext applicationDbContext)
+            ApplicationDbContext applicationDbContext,
+            IConfiguration configuration)
         {
             _credentialServiceClient = credentialServiceClient;
             _applicationDbContext = applicationDbContext;
+            _configuration = configuration;
         }
 
         public async Task<bool> HasIdentityDriverLicense(string username)
@@ -60,17 +65,16 @@ namespace NationalDrivingLicense
             string connectionId = null; // Can be null | <connection identifier>
             bool automaticIssuance = false;
             IDictionary<string, string> credentialValues = new Dictionary<String, String>() {
-                {"IssuedAt", _driverLicence.IssuedAt.ToString()},
+                {"Issued At", _driverLicence.IssuedAt.ToString()},
                 {"Name", _driverLicence.Name},
-                {"FirstName", _driverLicence.FirstName},
-                {"DateOfBirth", _driverLicence.DateOfBirth.Date.ToString()}
+                {"First Name", _driverLicence.FirstName},
+                {"Date of Birth", _driverLicence.DateOfBirth.Date.ToString()}
             };
 
             CredentialContract credential = await _credentialServiceClient
                 .CreateCredentialAsync(new CredentialOfferParameters
             {
-                // from the template
-                DefinitionId = "FfsoKVr82kUQTMWqGVBhVQ:3:CL:195644:Default",
+                DefinitionId = _configuration["Trinsic:TemplateDefinitionId"],
                 ConnectionId = connectionId,
                 AutomaticIssuance = automaticIssuance,
                 CredentialValues = credentialValues

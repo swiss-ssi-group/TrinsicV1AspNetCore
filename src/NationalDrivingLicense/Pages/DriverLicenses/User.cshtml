@@ -1,14 +1,14 @@
 ﻿@page
-@model NationalDrivingLicense.Pages.DriverLicenses.IndexModel
+@model NationalDrivingLicense.Pages.DriverLicenses.UserModel
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "User";
 }
 
-<h1>Index</h1>
+<h3>Driver Licenses for @Model.DriverLicence[0].UserName</h3>
 
 <p>
-    <a asp-page="Create">Create New</a>
+    <a asp-page="Create" asp-route-id="@Model.UserName">Add New License</a>
 </p>
 <table class="table">
     <thead>

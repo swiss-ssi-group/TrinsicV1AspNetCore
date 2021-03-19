@@ -5,9 +5,7 @@
     ViewData["Title"] = "Edit";
 }
 
-<h1>Edit</h1>
-
-<h4>DriverLicence</h4>
+<h4>Edit Driver Licence</h4>
 <hr />
 <div class="row">
     <div class="col-md-4">
@@ -16,7 +14,7 @@
             <input type="hidden" asp-for="DriverLicence.Id" />
             <div class="form-group">
                 <label class="control-label">@Model.DriverLicence.UserName</label>
-                <input type="hidden" value="@Model.DriverLicence.UserName"/>
+                <input type="hidden" value="@Model.DriverLicence.UserName" />
             </div>
             <div class="form-group">
                 <label class="control-label">@Model.DriverLicence.FirstName @Model.DriverLicence.Name</label>
@@ -36,7 +34,7 @@
 </div>
 
 <div>
-    <a asp-page="./Index">Back to List</a>
+    <a asp-page="./User" asp-route-id="@Model.DriverLicence.UserName">Back to List</a>
 </div>
 
 @section Scripts {
