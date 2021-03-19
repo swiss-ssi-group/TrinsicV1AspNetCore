@@ -1,3 +1,4 @@
+using Insurance.Services;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
@@ -27,6 +28,8 @@ namespace Insurance
                 // For ProviderClient
                 // options.ProviderKey = providerKey;
             });
+
+            services.AddScoped<DriversLicenseVerificationService>();
 
             // ngronk is required so that we can receive webhooks
             //if (Environment.IsDevelopment())
