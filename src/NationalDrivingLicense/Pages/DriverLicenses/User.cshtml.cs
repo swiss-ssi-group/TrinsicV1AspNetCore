@@ -11,6 +11,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
     public class UserModel : PageModel
     {
         private readonly ApplicationDbContext _context;
+        public string UserName { get; set; }
 
         public UserModel(ApplicationDbContext context)
         {
@@ -25,6 +26,8 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
             {
                 return NotFound();
             }
+            UserName = id;
+
             DriverLicence = await _context.DriverLicences
                 .AsQueryable()
                 .Where(item => item.UserName == id)

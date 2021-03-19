@@ -1,25 +1,29 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using NationalDrivingLicense.Data;
 
 namespace NationalDrivingLicense.Pages.DriverLicenses
 {
     public class CreateModel : PageModel
     {
-        private readonly NationalDrivingLicense.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
+        public string UserName { get; set; }
 
-        public CreateModel(NationalDrivingLicense.Data.ApplicationDbContext context)
+        public CreateModel(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public IActionResult OnGet()
+        public IActionResult OnGet(string id)
         {
+            if (id == null)
+            {
+                return NotFound();
+            }
+            UserName = id;
+
             return Page();
         }
 
@@ -39,7 +43,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
             _context.DriverLicences.Add(DriverLicence);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./Index");
+            return RedirectToPage($"./User?id={DriverLicence.UserName}");
         }
     }
 }
