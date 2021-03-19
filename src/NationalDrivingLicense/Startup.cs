@@ -29,6 +29,14 @@ namespace NationalDrivingLicense
         {
             services.AddScoped<TrinsicCredentialsProvider>();
 
+            services.AddTrinsicClient(options =>
+            {
+                // For CredentialsClient and WalletClient
+                options.AccessToken = Configuration["Trinsic:ApiKey"];
+                // For ProviderClient
+                // options.ProviderKey = providerKey;
+            });
+
             services.AddDbContext<ApplicationDbContext>(options =>
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
