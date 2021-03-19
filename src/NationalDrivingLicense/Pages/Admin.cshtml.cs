@@ -19,7 +19,8 @@ namespace NationalDrivingLicense
             }
             else
             {
-                return Redirect("/Identity/Account/Manage/TwoFactorAuthentication");
+                // to test mfa check disabled
+                // return Redirect("/Identity/Account/Manage/TwoFactorAuthentication");
             }
 
             return Page();
