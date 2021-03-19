@@ -38,7 +38,7 @@ namespace NationalDrivingLicense
              .AddDefaultTokenProviders();
 
             services.AddSingleton<IEmailSender, EmailSender>();
-            services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, 
+            services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>,
                 AdditionalUserClaimsPrincipalFactory>();
 
             services.AddAuthorization(options =>
