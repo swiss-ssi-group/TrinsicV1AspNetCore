@@ -8,9 +8,22 @@ namespace NationalDrivingLicense.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
+        public DbSet<DriverLicence> DriverLicences { get; set; }
+
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
         {
+        }
+
+        protected override void OnModelCreating(ModelBuilder builder)
+        {
+            builder.Entity<DriverLicence>().HasKey(m => m.Id);
+
+            builder.Entity<DriverLicence>()
+               .HasOne(p => p.ApplicationUser)
+               .WithMany(b => b.DriverLicences);
+
+            base.OnModelCreating(builder);
         }
     }
 }
