@@ -11,12 +11,15 @@ namespace NationalDrivingLicense.Pages
     {
         private readonly TrinsicCredentialsProvider _trinsicCredentialsProvider;
 
+        public string CredentialOfferUrl { get; set; }
         public DriverLicenseCredentialsModel(TrinsicCredentialsProvider trinsicCredentialsProvider)
         {
             _trinsicCredentialsProvider = trinsicCredentialsProvider;
         }
-        public void OnGet()
+        public async Task OnGetAsync()
         {
+            // var data = await _trinsicCredentialsProvider.GetDriverLicenseCredential();
+            //CredentialOfferUrl = data.OfferUrl;
         }
     }
 }
