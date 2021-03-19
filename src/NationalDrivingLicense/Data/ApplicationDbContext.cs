@@ -19,10 +19,6 @@ namespace NationalDrivingLicense.Data
         {
             builder.Entity<DriverLicence>().HasKey(m => m.Id);
 
-            builder.Entity<DriverLicence>()
-               .HasOne(p => p.ApplicationUser)
-               .WithMany(b => b.DriverLicences);
-
             base.OnModelCreating(builder);
         }
     }

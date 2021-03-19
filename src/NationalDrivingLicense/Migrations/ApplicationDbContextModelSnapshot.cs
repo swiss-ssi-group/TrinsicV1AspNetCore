@@ -82,10 +82,6 @@ namespace NationalDrivingLicense.Migrations
                         .IsConcurrencyToken()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Discriminator")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Email")
                         .HasMaxLength(256)
                         .HasColumnType("nvarchar(256)");
@@ -137,8 +133,6 @@ namespace NationalDrivingLicense.Migrations
                         .HasFilter("[NormalizedUserName] IS NOT NULL");
 
                     b.ToTable("AspNetUsers");
-
-                    b.HasDiscriminator<string>("Discriminator").HasValue("IdentityUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", b =>
@@ -227,9 +221,6 @@ namespace NationalDrivingLicense.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("ApplicationUserId")
-                        .HasColumnType("nvarchar(450)");
-
                     b.Property<DateTimeOffset>("DateOfBirth")
                         .HasColumnType("datetimeoffset");
 
@@ -256,16 +247,7 @@ namespace NationalDrivingLicense.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("ApplicationUserId");
-
                     b.ToTable("DriverLicences");
-                });
-
-            modelBuilder.Entity("NationalDrivingLicense.Data.ApplicationUser", b =>
-                {
-                    b.HasBaseType("Microsoft.AspNetCore.Identity.IdentityUser");
-
-                    b.HasDiscriminator().HasValue("ApplicationUser");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -317,20 +299,6 @@ namespace NationalDrivingLicense.Migrations
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("NationalDrivingLicense.Data.DriverLicence", b =>
-                {
-                    b.HasOne("NationalDrivingLicense.Data.ApplicationUser", "ApplicationUser")
-                        .WithMany("DriverLicences")
-                        .HasForeignKey("ApplicationUserId");
-
-                    b.Navigation("ApplicationUser");
-                });
-
-            modelBuilder.Entity("NationalDrivingLicense.Data.ApplicationUser", b =>
-                {
-                    b.Navigation("DriverLicences");
                 });
 #pragma warning restore 612, 618
         }
