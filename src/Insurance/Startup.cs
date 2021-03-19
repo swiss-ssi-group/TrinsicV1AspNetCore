@@ -1,12 +1,8 @@
-using FluffySpoon.AspNet.NGrok;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System.Linq;
-using Trinsic.ServiceClients;
-using Trinsic.ServiceClients.Models;
 
 namespace Insurance
 {
@@ -33,13 +29,13 @@ namespace Insurance
             });
 
             // ngronk is required so that we can receive webhooks
-            if (Environment.IsDevelopment())
-            {
-                services.AddNGrok();
-            }
+            //if (Environment.IsDevelopment())
+            //{
+            //    services.AddNGrok();
+            //}
 
             services.AddRazorPages();
-
+            services.AddControllers();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -48,26 +44,26 @@ namespace Insurance
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                app.UseNGrokAutomaticUrlDetection();
+                //app.UseNGrokAutomaticUrlDetection();
 
-                var ngrokservice = app.ApplicationServices.GetService<INGrokHostedService>();
-                ngrokservice.Ready += async obj => {
-                    var credentialsServiceClient = app.ApplicationServices.GetService<ICredentialsServiceClient>();
-                    var webhookContract = await credentialsServiceClient.CreateWebhookAsync(new WebhookParameters
-                    {
-                        Url = obj.First().PublicUrl,
-                        Type = "Notification"
-                    });
-                };
+                //var ngrokservice = app.ApplicationServices.GetService<INGrokHostedService>();
+                //ngrokservice.Ready += async obj => {
+                //    var credentialsServiceClient = app.ApplicationServices.GetService<ICredentialsServiceClient>();
+                //    var webhookContract = await credentialsServiceClient.CreateWebhookAsync(new WebhookParameters
+                //    {
+                //        Url = $"{obj.First(x => x.Proto.Equals("http")).PublicUrl}/api/webhook",
+                //        Type = "Notification"
+                //    });
+                //};
             }
             else
             {
+                app.UseHttpsRedirection();
                 app.UseExceptionHandler("/Error");
                 // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 
-            app.UseHttpsRedirection();
             app.UseStaticFiles();
 
             app.UseRouting();
@@ -76,6 +72,7 @@ namespace Insurance
 
             app.UseEndpoints(endpoints =>
             {
+                endpoints.MapControllers();
                 endpoints.MapRazorPages();
             });
         }

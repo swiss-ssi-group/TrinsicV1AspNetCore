@@ -5,53 +5,93 @@
 }
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Please choose one of our insurance packages</p>
+    <h1 class="display-4">Welcome to your car insurance</h1>
+    <p>Easy online sign up</p>
 </div>
 <div class="card-deck mb-3 text-center">
     <div class="card mb-4 box-shadow">
         <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Free</h4>
+            <h4 class="my-0 font-weight-normal">Premium Discount Package</h4>
         </div>
         <div class="card-body">
-            <h1 class="card-title pricing-card-title">$0 <small class="text-muted">/ mo</small></h1>
             <ul class="list-unstyled mt-3 mb-4">
-                <li>10 users included</li>
-                <li>2 GB of storage</li>
-                <li>Email support</li>
-                <li>Help center access</li>
+                <li>30% off</li>
+                <li>No fee for monthly payment</li>
+                <li>And more</li>
             </ul>
-            <a asp-page="SignUp" class="btn btn-lg btn-block btn-outline-primary">Sign up</a>
-        </div>
-    </div>
-    <div class="card mb-4 box-shadow">
-        <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Pro</h4>
-        </div>
-        <div class="card-body">
-            <h1 class="card-title pricing-card-title">$15 <small class="text-muted">/ mo</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-                <li>20 users included</li>
-                <li>10 GB of storage</li>
-                <li>Priority email support</li>
-                <li>Help center access</li>
-            </ul>
-            <a asp-page="SignUp" class="btn btn-lg btn-block btn-outline-primary">Sign up</a>
-        </div>
-    </div>
-    <div class="card mb-4 box-shadow">
-        <div class="card-header">
-            <h4 class="my-0 font-weight-normal">Enterprise</h4>
-        </div>
-        <div class="card-body">
-            <h1 class="card-title pricing-card-title">$29 <small class="text-muted">/ mo</small></h1>
-            <ul class="list-unstyled mt-3 mb-4">
-                <li>30 users included</li>
-                <li>15 GB of storage</li>
-                <li>Phone and email support</li>
-                <li>Help center access</li>
-            </ul>
-            <a asp-page="SignUp" class="btn btn-lg btn-block btn-outline-primary">Sign up</a>
+            <button id="btnFree" type="button" class="btn btn-lg btn-block btn-outline-primary">Sign up</button>
         </div>
     </div>
 </div>
+
+<div id="myModal" class="modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Please verify your drivers license</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Scan the following QR Code with your Wallet app.</p>
+                <div id="spinner" class="spinner-border" role="status">
+                    <span class="sr-only">Loading...</span>
+                </div>
+                <img id="qrCode" style="display: none" alt="QR Code" />
+                <img id="success" width="300" style="display: none;" src="https://static.vecteezy.com/system/resources/previews/000/572/885/original/check-mark-icon-vector.jpg" />
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+        $(function () {
+            $('#btnFree').click(function () {
+                $('#spinner').show();
+                $('#qrCode').hide();
+                $('#success').hide();
+
+                $('#myModal').modal('toggle')
+            });
+
+            $('#myModal').on('shown.bs.modal', function () {
+                $.ajax({
+                    url: '@(Url.ActionLink("Url", "Verification"))',
+                    success: function (data) {
+                        if (data.verificationUrl.length > 0) {
+                            $('#qrCode').attr('src', data.verificationUrl);
+                            $('#spinner').hide();
+                            $('#qrCode').show();
+
+                            // Start polling so that we know when we can move on
+                            var intervalId = setInterval(function () {
+                                console.log('Checking verification status');
+                                $.ajax({
+                                    url: '@(Url.ActionLink("CheckStatus", "Verification"))' + '?verificationId=' + data.verificationId,
+                                    success: function (data) {
+                                        console.log(JSON.stringify(data));
+                                        if (data.state === "accepted") {
+                                            clearInterval(intervalId);
+                                            console.log('Thank you for your verification!');
+                                            $('#qrCode').hide();
+                                            $('#success').show();
+                                        }
+                                    }
+                                });
+                            }, 1000);
+                        } else {
+                            console.error('Oops, we did not get a verification url!');
+                        }
+                    }
+                });
+            });
+        });
+    </script>
+
+} 

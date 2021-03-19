@@ -10,8 +10,4 @@
     <PackageReference Include="Trinsic.ServiceClients" Version="1.1.5018" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Controllers\" />
-  </ItemGroup>
-
 </Project>
