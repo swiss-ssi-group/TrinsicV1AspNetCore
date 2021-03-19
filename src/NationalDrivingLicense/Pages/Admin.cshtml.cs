@@ -15,7 +15,7 @@ namespace NationalDrivingLicense
         private readonly IConfiguration _configuration;
         private readonly ApplicationDbContext _context;
 
-        public AdminModel(IConfiguration configuration, 
+        public AdminModel(IConfiguration configuration,
             ApplicationDbContext context)
         {
             _configuration = configuration;
@@ -79,7 +79,7 @@ namespace NationalDrivingLicense
 
             CurrentFilter = searchString;
 
-            IQueryable<IdentityUser> UsersIQ = from s in _context.Users                                             select s;
+            IQueryable<IdentityUser> UsersIQ = from s in _context.Users select s;
             if (!string.IsNullOrEmpty(searchString))
             {
                 UsersIQ = UsersIQ.Where(s => s.UserName.Contains(searchString));

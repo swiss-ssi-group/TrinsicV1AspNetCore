@@ -20,7 +20,7 @@ namespace NationalDrivingLicense.Pages
         }
         public async Task OnGetAsync()
         {
-            if(await _trinsicCredentialsProvider
+            if (await _trinsicCredentialsProvider
                 .HasIdentityDriverLicense(HttpContext.User.Identity.Name))
             {
                 var offerUrl = await _trinsicCredentialsProvider

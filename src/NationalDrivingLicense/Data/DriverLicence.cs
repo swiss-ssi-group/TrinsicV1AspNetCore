@@ -16,5 +16,5 @@ namespace NationalDrivingLicense.Data
         public bool Valid { get; set; }
         public string DriverLicenceCredentials { get; set; }
         public string LicenseType { get; set; }
-}
+    }
 }
