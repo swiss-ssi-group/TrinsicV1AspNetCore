@@ -26,6 +26,9 @@
                 @Html.DisplayNameFor(model => model.DriverLicence[0].FirstName)
             </th>
             <th>
+                @Html.DisplayNameFor(model => model.DriverLicence[0].LicenseType)
+            </th>
+            <th>
                 @Html.DisplayNameFor(model => model.DriverLicence[0].DateOfBirth)
             </th>
             <th>
@@ -51,6 +54,9 @@
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.LicenseType)
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.DateOfBirth)

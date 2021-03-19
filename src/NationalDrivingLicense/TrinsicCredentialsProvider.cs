@@ -68,7 +68,8 @@ namespace NationalDrivingLicense
                 {"Issued At", _driverLicence.IssuedAt.ToString()},
                 {"Name", _driverLicence.Name},
                 {"First Name", _driverLicence.FirstName},
-                {"Date of Birth", _driverLicence.DateOfBirth.Date.ToString()}
+                {"Date of Birth", _driverLicence.DateOfBirth.Date.ToString()},
+                {"License Type", "Car"}
             };
 
             CredentialContract credential = await _credentialServiceClient
