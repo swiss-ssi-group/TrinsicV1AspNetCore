@@ -32,11 +32,11 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
             var driverLicence = await _context.DriverLicences.FirstOrDefaultAsync(m => m.Id == id);
             DriverLicence = new UpdateDriverLicence
             {
-                Id = DriverLicence.Id,
-                FirstName = DriverLicence.FirstName,
-                Name = DriverLicence.Name,
-                UserName = DriverLicence.UserName,
-                Valid = DriverLicence.Valid
+                Id = driverLicence.Id,
+                FirstName = driverLicence.FirstName,
+                Name = driverLicence.Name,
+                UserName = driverLicence.UserName,
+                Valid = driverLicence.Valid
             };
 
             if (DriverLicence == null)

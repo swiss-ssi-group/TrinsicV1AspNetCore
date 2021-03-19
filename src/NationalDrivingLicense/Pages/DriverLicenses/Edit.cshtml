@@ -19,8 +19,9 @@
                 <input type="hidden" value="@Model.DriverLicence.UserName"/>
             </div>
             <div class="form-group">
-                <label class="control-label">@Model.DriverLicence.Name</label>
+                <label class="control-label">@Model.DriverLicence.FirstName @Model.DriverLicence.Name</label>
                 <input type="hidden" value="@Model.DriverLicence.Name" />
+                <input type="hidden" value="@Model.DriverLicence.FirstName" />
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
