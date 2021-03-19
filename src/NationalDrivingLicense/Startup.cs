@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace NationalDrivingLicense
 {
@@ -31,10 +32,21 @@ namespace NationalDrivingLicense
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
 
-            services.AddIdentity<ApplicationUser, IdentityRole>()
-               .AddDefaultTokenProviders()
-               .AddDefaultUI()
-               .AddEntityFrameworkStores<ApplicationDbContext>();
+            services.AddIdentity<IdentityUser, IdentityRole>(
+                options => options.SignIn.RequireConfirmedAccount = false)
+             .AddEntityFrameworkStores<ApplicationDbContext>()
+             .AddDefaultTokenProviders();
+
+            services.AddSingleton<IEmailSender, EmailSender>();
+            services.AddScoped<IUserClaimsPrincipalFactory<IdentityUser>, 
+                AdditionalUserClaimsPrincipalFactory>();
+
+            services.AddAuthorization(options =>
+            {
+                options.AddPolicy("TwoFactorEnabled",
+                    x => x.RequireClaim("amr", "mfa")
+                );
+            });
 
             services.AddRazorPages();
         }
