@@ -20,5 +20,5 @@ dotnet ef database update
 
 ### Powershell
 
-Update-Database -c ApplicationDbContext
+Update-Database
 
