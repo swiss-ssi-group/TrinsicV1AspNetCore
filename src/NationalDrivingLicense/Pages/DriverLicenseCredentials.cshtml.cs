@@ -25,7 +25,7 @@ namespace NationalDrivingLicense.Pages
             {
                 var offerUrl = await _trinsicCredentialsProvider
                     .GetDriverLicenseCredential(HttpContext.User.Identity.Name);
-                DriverLicenseMessage = "Add your credentials to your wallet";
+                DriverLicenseMessage = "Add your Driver license credentials to your wallet";
                 CredentialOfferUrl = offerUrl;
                 HasDriverLicense = true;
             }
