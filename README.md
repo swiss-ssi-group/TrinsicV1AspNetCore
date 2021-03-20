@@ -1,3 +1,7 @@
+
+[![.NET](https://github.com/Franklin89/SSI-Sample/workflows/.NET/badge.svg)](https://github.com/Franklin89/SSI-Sample/actions?query=workflow%3A.NET) 
+
+
 # Self Sovereign Identity (SSI)
 
 ## Links
