@@ -10,7 +10,9 @@
     </li>
     <li class="nav-item">
         <form class="form-inline" asp-area="Identity" asp-page="/Account/Logout" asp-route-returnUrl="@Url.Page("/", new { area = "" })" method="post" >
-            <button  type="submit" class="nav-link btn btn-link text-dark">Logout</button>
+            <button type="submit" class="nav-link btn btn-link text-dark">
+                <i class="fa fa-sign-out-alt" aria-hidden="true"></i>
+            </button>
         </form>
     </li>
 }
@@ -20,7 +22,9 @@ else
         <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Register">Register</a>
     </li>
     <li class="nav-item">
-        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">Login</a>
+        <a class="nav-link text-dark" asp-area="Identity" asp-page="/Account/Login">
+            <i class="fa fa-sign-in-alt" aria-hidden="true"></i>
+        </a>
     </li>
 }
 </ul>
