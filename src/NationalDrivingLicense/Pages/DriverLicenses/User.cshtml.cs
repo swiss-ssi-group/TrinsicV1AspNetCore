@@ -11,6 +11,8 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
     public class UserModel : PageModel
     {
         private readonly ApplicationDbContext _context;
+
+        [FromQuery(Name = "id")]
         public string UserName { get; set; }
 
         public UserModel(ApplicationDbContext context)

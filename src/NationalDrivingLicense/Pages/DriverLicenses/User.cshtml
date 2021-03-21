@@ -31,7 +31,7 @@
                 @Html.DisplayFor(modelItem => item.UserName)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.IssuedAt)
+                @item.IssuedAt.ToString("MM/dd/yyyy")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Name)
@@ -43,7 +43,7 @@
                 @Html.DisplayFor(modelItem => item.LicenseType)
             </td>
             <td>
-                @Html.DisplayFor(modelItem => item.DateOfBirth)
+                @item.DateOfBirth.ToString("MM/dd/yyyy")
             </td>
             <td>
                 @Html.DisplayFor(modelItem => item.Issuedby)
