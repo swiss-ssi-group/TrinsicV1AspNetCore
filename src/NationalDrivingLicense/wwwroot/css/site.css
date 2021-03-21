@@ -82,3 +82,16 @@ body {
     width: 30px !important;
     height: 30px !important;
 }
+
+.search {
+    height: calc(1.5em + .75rem);
+    padding: .375rem .75rem;
+    font-size: 1rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #fff;
+    background-clip: padding-box;
+    border: 1px solid #ced4da;
+    border-radius: .25rem;
+}

@@ -12,8 +12,10 @@
     <div class="form-actions no-color">
         <p>
             Find by name:
-            <input type="text" name="SearchString" value="@Model.CurrentFilter" />
-            <input type="submit" value="Search" class="btn btn-primary" /> |
+            <input type="text" class="search" name="SearchString" value="@Model.CurrentFilter" />
+            <button type="submit" value="Search" class="btn btn-outline-dark"> 
+                <i class="fas fa-search" aria-hidden="true"></i>
+            </button>
             <a asp-page="./Admin">Back to full List</a>
         </p>
     </div>
