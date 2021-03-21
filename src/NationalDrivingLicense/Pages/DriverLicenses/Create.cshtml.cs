@@ -9,7 +9,10 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
     public class CreateModel : PageModel
     {
         private readonly ApplicationDbContext _context;
+
+        [FromQuery(Name = "id")]
         public string UserName { get; set; }
+
         [BindProperty]
         public DriverLicense DriverLicense { get; set; }
 
