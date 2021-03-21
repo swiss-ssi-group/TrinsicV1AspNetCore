@@ -6,27 +6,27 @@ namespace NationalDrivingLicense.Pages
 {
     public class DriverLicenseCredentialsModel : PageModel
     {
-        private readonly TrinsicCredentialsProvider _trinsicCredentialsProvider;
-        private readonly DriverLicenseProvider _driverLicenseProvider;
+        private readonly TrinsicCredentialsService _trinsicCredentialsService;
+        private readonly DriverLicenseService _driverLicenseService;
 
         public string DriverLicenseMessage { get; set; } = "Loading credentials";
         public bool HasDriverLicense { get; set; } = false;
         public DriverLicense DriverLicense { get; set; }
 
         public string CredentialOfferUrl { get; set; }
-        public DriverLicenseCredentialsModel(TrinsicCredentialsProvider trinsicCredentialsProvider,
-           DriverLicenseProvider driverLicenseProvider)
+        public DriverLicenseCredentialsModel(TrinsicCredentialsService trinsicCredentialsService,
+           DriverLicenseService driverLicenseService)
         {
-            _trinsicCredentialsProvider = trinsicCredentialsProvider;
-            _driverLicenseProvider = driverLicenseProvider;
+            _trinsicCredentialsService = trinsicCredentialsService;
+            _driverLicenseService = driverLicenseService;
         }
         public async Task OnGetAsync()
         {
-            DriverLicense = await _driverLicenseProvider.GetDriverLicense(HttpContext.User.Identity.Name);
+            DriverLicense = await _driverLicenseService.GetDriverLicense(HttpContext.User.Identity.Name);
 
             if (DriverLicense != null)
             {
-                var offerUrl = await _trinsicCredentialsProvider
+                var offerUrl = await _trinsicCredentialsService
                     .GetDriverLicenseCredential(HttpContext.User.Identity.Name);
                 DriverLicenseMessage = "Add your driver license credentials to your wallet";
                 CredentialOfferUrl = offerUrl;

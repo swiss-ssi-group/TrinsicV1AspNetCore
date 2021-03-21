@@ -1,17 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
 using NationalDrivingLicense.Data;
-using System;
 using System.Threading.Tasks;
 
 namespace NationalDrivingLicense
 {
-    public class DriverLicenseProvider
+    public class DriverLicenseService
     {
         private readonly ApplicationDbContext _applicationDbContext;
 
-        public DriverLicenseProvider(ApplicationDbContext applicationDbContext,
-            IConfiguration configuration)
+        public DriverLicenseService(ApplicationDbContext applicationDbContext)
         {
             _applicationDbContext = applicationDbContext;
         }

@@ -27,8 +27,8 @@ namespace NationalDrivingLicense
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddScoped<TrinsicCredentialsProvider>();
-            services.AddScoped<DriverLicenseProvider>();
+            services.AddScoped<TrinsicCredentialsService>();
+            services.AddScoped<DriverLicenseService>();
 
             services.AddTrinsicClient(options =>
             {

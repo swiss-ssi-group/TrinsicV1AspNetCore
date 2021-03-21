@@ -7,29 +7,29 @@ using Trinsic.ServiceClients.Models;
 
 namespace NationalDrivingLicense
 {
-    public class TrinsicCredentialsProvider
+    public class TrinsicCredentialsService
     {
         private readonly ICredentialsServiceClient _credentialServiceClient;
         private readonly IConfiguration _configuration;
-        private readonly DriverLicenseProvider _driverLicenseProvider;
+        private readonly DriverLicenseService _driverLicenseService;
 
-        public TrinsicCredentialsProvider(ICredentialsServiceClient credentialServiceClient,
+        public TrinsicCredentialsService(ICredentialsServiceClient credentialServiceClient,
             IConfiguration configuration,
-            DriverLicenseProvider driverLicenseProvider)
+            DriverLicenseService driverLicenseService)
         {
             _credentialServiceClient = credentialServiceClient;
             _configuration = configuration;
-            _driverLicenseProvider = driverLicenseProvider;
+            _driverLicenseService = driverLicenseService;
         }
 
         public async Task<string> GetDriverLicenseCredential(string username)
         {
-            if (!await _driverLicenseProvider.HasIdentityDriverLicense(username))
+            if (!await _driverLicenseService.HasIdentityDriverLicense(username))
             {
                 throw new ArgumentException("user has no valid driver license");
             }
 
-            var driverLicense = await _driverLicenseProvider.GetDriverLicense(username);
+            var driverLicense = await _driverLicenseService.GetDriverLicense(username);
 
             if (!string.IsNullOrEmpty(driverLicense.DriverLicenseCredentials))
             {
@@ -56,7 +56,7 @@ namespace NationalDrivingLicense
                 });
 
             driverLicense.DriverLicenseCredentials = credential.OfferUrl;
-            await _driverLicenseProvider.UpdateDriverLicense(driverLicense);
+            await _driverLicenseService.UpdateDriverLicense(driverLicense);
 
             return credential.OfferUrl;
         }
