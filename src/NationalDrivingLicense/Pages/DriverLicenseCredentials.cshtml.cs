@@ -1,5 +1,6 @@
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using NationalDrivingLicense.Data;
 
 namespace NationalDrivingLicense.Pages
 {
@@ -10,6 +11,8 @@ namespace NationalDrivingLicense.Pages
 
         public string DriverLicenseMessage { get; set; } = "Loading credentials";
         public bool HasDriverLicense { get; set; } = false;
+        public DriverLicense DriverLicense { get; set; }
+
         public string CredentialOfferUrl { get; set; }
         public DriverLicenseCredentialsModel(TrinsicCredentialsProvider trinsicCredentialsProvider,
            DriverLicenseProvider driverLicenseProvider)
@@ -19,9 +22,9 @@ namespace NationalDrivingLicense.Pages
         }
         public async Task OnGetAsync()
         {
-            var driverLicense = _driverLicenseProvider.GetDriverLicense(HttpContext.User.Identity.Name);
+            DriverLicense = await _driverLicenseProvider.GetDriverLicense(HttpContext.User.Identity.Name);
 
-            if (driverLicense != null)
+            if (DriverLicense != null)
             {
                 var offerUrl = await _trinsicCredentialsProvider
                     .GetDriverLicenseCredential(HttpContext.User.Identity.Name);
