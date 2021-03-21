@@ -21,10 +21,13 @@
                 <input type="hidden" value="@Model.DriverLicense.Name" />
                 <input type="hidden" value="@Model.DriverLicense.FirstName" />
             </div>
-            <div class="form-group form-check">
-                <label class="form-check-label">
-                    <input class="form-check-input" asp-for="DriverLicense.Valid" /> @Html.DisplayNameFor(model => model.DriverLicense.Valid)
-                </label>
+            <div class="form-group">
+                <div class="checkbox">
+                    <label asp-for="DriverLicense.Valid">
+                        <input class="big_checkbox" asp-for="DriverLicense.Valid" />
+                        @Html.DisplayNameFor(model => model.DriverLicense.Valid)
+                    </label>
+                </div>
             </div>
             <div class="form-group">
                 <input type="submit" value="Save" class="btn btn-primary" />

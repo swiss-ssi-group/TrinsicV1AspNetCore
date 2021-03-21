@@ -77,3 +77,8 @@ body {
     padding:0;
     margin:0;
 }
+
+.big_checkbox {
+    width: 30px !important;
+    height: 30px !important;
+}
