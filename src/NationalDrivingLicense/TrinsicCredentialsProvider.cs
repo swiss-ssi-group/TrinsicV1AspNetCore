@@ -1,6 +1,4 @@
-﻿using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using NationalDrivingLicense.Data;
+﻿using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -12,64 +10,40 @@ namespace NationalDrivingLicense
     public class TrinsicCredentialsProvider
     {
         private readonly ICredentialsServiceClient _credentialServiceClient;
-        private readonly ApplicationDbContext _applicationDbContext;
         private readonly IConfiguration _configuration;
-
-        private DriverLicence _driverLicence { get; set; }
+        private readonly DriverLicenseProvider _driverLicenseProvider;
 
         public TrinsicCredentialsProvider(ICredentialsServiceClient credentialServiceClient,
-            ApplicationDbContext applicationDbContext,
-            IConfiguration configuration)
+            IConfiguration configuration,
+            DriverLicenseProvider driverLicenseProvider)
         {
             _credentialServiceClient = credentialServiceClient;
-            _applicationDbContext = applicationDbContext;
             _configuration = configuration;
-        }
-
-        public async Task<bool> HasIdentityDriverLicense(string username)
-        {
-            if (_driverLicence != null)
-            {
-                return true;
-            }
-
-            if (!string.IsNullOrEmpty(username))
-            {
-                var driverLicence = await _applicationDbContext.DriverLicences.FirstOrDefaultAsync(
-                    dl => dl.UserName == username && dl.Valid == true
-                );
-
-                if (driverLicence != null)
-                {
-                    // cache this in the service (scoped service)
-                    _driverLicence = driverLicence;
-                    return true;
-                }
-            }
-
-            return false;
+            _driverLicenseProvider = driverLicenseProvider;
         }
 
         public async Task<string> GetDriverLicenseCredential(string username)
         {
-            if (!await HasIdentityDriverLicense(username))
+            if (!await _driverLicenseProvider.HasIdentityDriverLicense(username))
             {
                 throw new ArgumentException("user has no valid driver license");
             }
 
-            if (!string.IsNullOrEmpty(_driverLicence.DriverLicenceCredentials))
+            var driverLicense = await _driverLicenseProvider.GetDriverLicense(username);
+
+            if (!string.IsNullOrEmpty(driverLicense.DriverLicenceCredentials))
             {
-                return _driverLicence.DriverLicenceCredentials;
+                return driverLicense.DriverLicenceCredentials;
             }
 
             string connectionId = null; // Can be null | <connection identifier>
             bool automaticIssuance = false;
             IDictionary<string, string> credentialValues = new Dictionary<String, String>() {
-                {"Issued At", _driverLicence.IssuedAt.ToString()},
-                {"Name", _driverLicence.Name},
-                {"First Name", _driverLicence.FirstName},
-                {"Date of Birth", _driverLicence.DateOfBirth.Date.ToString()},
-                {"License Type", _driverLicence.LicenseType}
+                {"Issued At", driverLicense.IssuedAt.ToString()},
+                {"Name", driverLicense.Name},
+                {"First Name", driverLicense.FirstName},
+                {"Date of Birth", driverLicense.DateOfBirth.Date.ToString()},
+                {"License Type", driverLicense.LicenseType}
             };
 
             CredentialContract credential = await _credentialServiceClient
@@ -81,13 +55,10 @@ namespace NationalDrivingLicense
                     CredentialValues = credentialValues
                 });
 
-            _driverLicence.DriverLicenceCredentials = credential.OfferUrl;
-            _applicationDbContext.DriverLicences.Update(_driverLicence);
-            await _applicationDbContext.SaveChangesAsync();
+            driverLicense.DriverLicenceCredentials = credential.OfferUrl;
+            await _driverLicenseProvider.UpdateDriverLicense(driverLicense);
 
             return credential.OfferUrl;
         }
     }
-
-
 }
