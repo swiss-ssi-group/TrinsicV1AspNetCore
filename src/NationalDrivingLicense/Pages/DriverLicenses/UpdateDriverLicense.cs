@@ -1,10 +1,8 @@
 ﻿using System;
-using System.ComponentModel.DataAnnotations;
-using System.ComponentModel.DataAnnotations.Schema;
 
 namespace NationalDrivingLicense.Pages.DriverLicenses
 {
-    public class UpdateDriverLicence
+    public class UpdateDriverLicense
     {
         public Guid Id { get; set; }
         public string UserName { get; set; }

@@ -11,6 +11,8 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
     public class UserModel : PageModel
     {
         private readonly ApplicationDbContext _context;
+
+        [FromQuery(Name = "id")]
         public string UserName { get; set; }
 
         public UserModel(ApplicationDbContext context)
@@ -18,7 +20,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
             _context = context;
         }
 
-        public IList<DriverLicence> DriverLicence { get; set; }
+        public IList<DriverLicense> DriverLicense { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -28,7 +30,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
             }
             UserName = id;
 
-            DriverLicence = await _context.DriverLicences
+            DriverLicense = await _context.DriverLicenses
                 .AsQueryable()
                 .Where(item => item.UserName == id)
                 .ToListAsync();

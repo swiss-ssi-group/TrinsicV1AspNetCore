@@ -21,25 +21,6 @@ namespace NationalDrivingLicense
             _configuration = configuration;
             _context = context;
         }
-        //public IActionResult OnGet()
-        //{
-        //    var claimTwoFactorEnabled = User.Claims.FirstOrDefault(t => t.Type == "amr");
-
-        //    if (claimTwoFactorEnabled != null && "mfa".Equals(claimTwoFactorEnabled.Value))
-        //    {
-        //        // You logged in with MFA, or MFA is disabled, do the admin stuff
-        //    }
-        //    else
-        //    {
-        //        var requireMfa = bool.Parse(_configuration["MfaRequiredForAdmin"]);
-        //        if(requireMfa)
-        //        {
-        //            return Redirect("/Identity/Account/Manage/TwoFactorAuthentication");
-        //        }
-        //    }
-
-        //    return Page();
-        //}
 
         public string NameSort { get; set; }
         public string DateSort { get; set; }

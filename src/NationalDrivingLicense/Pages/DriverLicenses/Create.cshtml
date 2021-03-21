@@ -5,40 +5,37 @@
     ViewData["Title"] = "Create";
 }
 
-<h4>Create Driver Licence</h4>
+<h3>Create Driver Licence for @Model.UserName</h3>
 <hr />
 <div class="row">
     <div class="col-md-4">
         <form method="post">
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="DriverLicense.UserName" value="@Model.UserName" />
+            <input type="hidden" value="@Model.UserName" />
             <div class="form-group">
-                <label class="control-label">@Model.UserName</label>
-                <input type="hidden" asp-for="DriverLicence.UserName" value="@Model.UserName" />
-                <input type="hidden" value="@Model.UserName" />
+                <label class="control-label">Name</label>
+                <input asp-for="DriverLicense.Name" class="form-control" />
+                <span asp-validation-for="DriverLicense.Name" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DriverLicence.Name" class="control-label"></label>
-                <input asp-for="DriverLicence.Name" class="form-control" />
-                <span asp-validation-for="DriverLicence.Name" class="text-danger"></span>
+                <label class="control-label">First Name</label>
+                <input asp-for="DriverLicense.FirstName" class="form-control" />
+                <span asp-validation-for="DriverLicense.FirstName" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DriverLicence.FirstName" class="control-label"></label>
-                <input asp-for="DriverLicence.FirstName" class="form-control" />
-                <span asp-validation-for="DriverLicence.FirstName" class="text-danger"></span>
+                <label class="control-label">Date of Birth</label>
+                <input asp-for="DriverLicense.DateOfBirth" class="form-control" />
+                <span asp-validation-for="DriverLicense.DateOfBirth" class="text-danger"></span>
             </div>
             <div class="form-group">
-                <label asp-for="DriverLicence.DateOfBirth" class="control-label"></label>
-                <input asp-for="DriverLicence.DateOfBirth" class="form-control" />
-                <span asp-validation-for="DriverLicence.DateOfBirth" class="text-danger"></span>
-            </div>
-            <div class="form-group">
-                <label asp-for="DriverLicence.LicenseType" class="control-label"></label>
-                <input asp-for="DriverLicence.LicenseType" class="form-control" />
-                <span asp-validation-for="DriverLicence.LicenseType" class="text-danger"></span>
+                <label class="control-label">License Type</label>
+                <input asp-for="DriverLicense.LicenseType" class="form-control" />
+                <span asp-validation-for="DriverLicense.LicenseType" class="text-danger"></span>
             </div>
             <div class="form-group form-check">
                 <label class="form-check-label">
-                    <input class="form-check-input" asp-for="DriverLicence.Valid" /> @Html.DisplayNameFor(model => model.DriverLicence.Valid)
+                    <input class="form-check-input" asp-for="DriverLicense.Valid" /> @Html.DisplayNameFor(model => model.DriverLicense.Valid)
                 </label>
             </div>
             <div class="form-group">

@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,14 +9,14 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
 {
     public class DetailsModel : PageModel
     {
-        private readonly NationalDrivingLicense.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public DetailsModel(NationalDrivingLicense.Data.ApplicationDbContext context)
+        public DetailsModel(ApplicationDbContext context)
         {
             _context = context;
         }
 
-        public DriverLicence DriverLicence { get; set; }
+        public DriverLicense DriverLicense { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -27,12 +25,13 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
                 return NotFound();
             }
 
-            DriverLicence = await _context.DriverLicences.FirstOrDefaultAsync(m => m.Id == id);
+            DriverLicense = await _context.DriverLicenses.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (DriverLicence == null)
+            if (DriverLicense == null)
             {
                 return NotFound();
             }
+
             return Page();
         }
     }

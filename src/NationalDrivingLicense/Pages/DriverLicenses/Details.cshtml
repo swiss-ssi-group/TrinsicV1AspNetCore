@@ -10,56 +10,46 @@
     <hr />
     <dl class="row">
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DriverLicence.UserName)
+            @Html.DisplayNameFor(model => model.DriverLicense.UserName)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DriverLicence.UserName)
+            @Html.DisplayFor(model => model.DriverLicense.UserName)
+        </dd>
+        <dt class="col-sm-2">Issued</dt>
+        <dd class="col-sm-10">
+            @Model.DriverLicense.IssuedAt.ToString("MM/dd/yyyy")
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DriverLicence.IssuedAt)
+            @Html.DisplayNameFor(model => model.DriverLicense.Name)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DriverLicence.IssuedAt)
+            @Html.DisplayFor(model => model.DriverLicense.Name)
+        </dd>
+        <dt class="col-sm-2">First Name</dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DriverLicense.FirstName)
+        </dd>
+        <dt class="col-sm-2">License Type</dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DriverLicense.LicenseType)
+        </dd>
+        <dt class="col-sm-2">Date of Birth</dt>
+        <dd class="col-sm-10">
+            @Model.DriverLicense.DateOfBirth.ToString("MM/dd/yyyy")
+        </dd>
+        <dt class="col-sm-2">Issued by</dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.DriverLicense.Issuedby)
         </dd>
         <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DriverLicence.Name)
+            @Html.DisplayNameFor(model => model.DriverLicense.Valid)
         </dt>
         <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DriverLicence.Name)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DriverLicence.FirstName)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DriverLicence.FirstName)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DriverLicence.LicenseType)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DriverLicence.LicenseType)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DriverLicence.DateOfBirth)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DriverLicence.DateOfBirth)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DriverLicence.Issuedby)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DriverLicence.Issuedby)
-        </dd>
-        <dt class="col-sm-2">
-            @Html.DisplayNameFor(model => model.DriverLicence.Valid)
-        </dt>
-        <dd class="col-sm-10">
-            @Html.DisplayFor(model => model.DriverLicence.Valid)
+            @Html.DisplayFor(model => model.DriverLicense.Valid)
         </dd>
     </dl>
 </div>
 <div>
-    <a asp-page="./Edit" asp-route-id="@Model.DriverLicence.Id">Edit</a> |
-    <a asp-page="./User" asp-route-id="@Model.DriverLicence.UserName">Back to List</a>
+    <a asp-page="./Edit" asp-route-id="@Model.DriverLicense.Id">Edit</a> |
+    <a asp-page="./User" asp-route-id="@Model.DriverLicense.UserName">Back to List</a>
 </div>

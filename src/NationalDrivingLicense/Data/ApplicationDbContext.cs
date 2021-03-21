@@ -8,7 +8,7 @@ namespace NationalDrivingLicense.Data
 {
     public class ApplicationDbContext : IdentityDbContext
     {
-        public DbSet<DriverLicence> DriverLicences { get; set; }
+        public DbSet<DriverLicense> DriverLicenses { get; set; }
 
         public ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
             : base(options)
@@ -17,7 +17,7 @@ namespace NationalDrivingLicense.Data
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
-            builder.Entity<DriverLicence>().HasKey(m => m.Id);
+            builder.Entity<DriverLicense>().HasKey(m => m.Id);
 
             base.OnModelCreating(builder);
         }

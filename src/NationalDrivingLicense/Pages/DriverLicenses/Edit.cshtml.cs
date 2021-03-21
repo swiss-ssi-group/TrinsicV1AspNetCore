@@ -1,10 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
-using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using NationalDrivingLicense.Data;
 
@@ -20,7 +18,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
         }
 
         [BindProperty]
-        public UpdateDriverLicence DriverLicence { get; set; }
+        public UpdateDriverLicense DriverLicense { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -29,9 +27,9 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
                 return NotFound();
             }
 
-            var driverLicence = await _context.DriverLicences.FirstOrDefaultAsync(m => m.Id == id);
+            var driverLicence = await _context.DriverLicenses.FirstOrDefaultAsync(m => m.Id == id);
 
-            DriverLicence = new UpdateDriverLicence
+            DriverLicense = new UpdateDriverLicense
             {
                 Id = driverLicence.Id,
                 FirstName = driverLicence.FirstName,
@@ -40,10 +38,11 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
                 Valid = driverLicence.Valid
             };
 
-            if (DriverLicence == null)
+            if (DriverLicense == null)
             {
                 return NotFound();
             }
+
             return Page();
         }
 
@@ -54,8 +53,8 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
                 return Page();
             }
 
-            var toSave = await _context.DriverLicences.FirstOrDefaultAsync(m => m.Id == DriverLicence.Id);
-            toSave.Valid = DriverLicence.Valid;
+            var toSave = await _context.DriverLicenses.FirstOrDefaultAsync(m => m.Id == DriverLicense.Id);
+            toSave.Valid = DriverLicense.Valid;
 
             try
             {
@@ -63,7 +62,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DriverLicenceExists(DriverLicence.Id))
+                if (!DriverLicenceExists(DriverLicense.Id))
                 {
                     return NotFound();
                 }
@@ -78,7 +77,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
 
         private bool DriverLicenceExists(Guid id)
         {
-            return _context.DriverLicences.Any(e => e.Id == id);
+            return _context.DriverLicenses.Any(e => e.Id == id);
         }
     }
 }
