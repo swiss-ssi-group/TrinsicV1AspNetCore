@@ -11,7 +11,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
         private readonly ApplicationDbContext _context;
         public string UserName { get; set; }
         [BindProperty]
-        public DriverLicense DriverLicence { get; set; }
+        public DriverLicense DriverLicense { get; set; }
 
         public CreateModel(ApplicationDbContext context)
         {
@@ -36,13 +36,13 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
                 return Page();
             }
 
-            DriverLicence.Issuedby = HttpContext.User.Identity.Name;
-            DriverLicence.IssuedAt = DateTimeOffset.UtcNow;
+            DriverLicense.Issuedby = HttpContext.User.Identity.Name;
+            DriverLicense.IssuedAt = DateTimeOffset.UtcNow;
 
-            _context.DriverLicenses.Add(DriverLicence);
+            _context.DriverLicenses.Add(DriverLicense);
             await _context.SaveChangesAsync();
 
-            return RedirectToPage("./User", new { id = DriverLicence.UserName });
+            return RedirectToPage("./User", new { id = DriverLicense.UserName });
         }
     }
 }

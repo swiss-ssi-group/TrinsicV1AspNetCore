@@ -18,7 +18,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
             _context = context;
         }
 
-        public IList<DriverLicense> DriverLicence { get; set; }
+        public IList<DriverLicense> DriverLicense { get; set; }
 
         public async Task<IActionResult> OnGetAsync(string id)
         {
@@ -28,7 +28,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
             }
             UserName = id;
 
-            DriverLicence = await _context.DriverLicenses
+            DriverLicense = await _context.DriverLicenses
                 .AsQueryable()
                 .Where(item => item.UserName == id)
                 .ToListAsync();

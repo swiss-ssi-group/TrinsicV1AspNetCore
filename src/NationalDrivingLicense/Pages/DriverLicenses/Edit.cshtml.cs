@@ -20,7 +20,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
         }
 
         [BindProperty]
-        public UpdateDriverLicense DriverLicence { get; set; }
+        public UpdateDriverLicense DriverLicense { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -31,7 +31,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
 
             var driverLicence = await _context.DriverLicenses.FirstOrDefaultAsync(m => m.Id == id);
 
-            DriverLicence = new UpdateDriverLicense
+            DriverLicense = new UpdateDriverLicense
             {
                 Id = driverLicence.Id,
                 FirstName = driverLicence.FirstName,
@@ -40,7 +40,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
                 Valid = driverLicence.Valid
             };
 
-            if (DriverLicence == null)
+            if (DriverLicense == null)
             {
                 return NotFound();
             }
@@ -54,8 +54,8 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
                 return Page();
             }
 
-            var toSave = await _context.DriverLicenses.FirstOrDefaultAsync(m => m.Id == DriverLicence.Id);
-            toSave.Valid = DriverLicence.Valid;
+            var toSave = await _context.DriverLicenses.FirstOrDefaultAsync(m => m.Id == DriverLicense.Id);
+            toSave.Valid = DriverLicense.Valid;
 
             try
             {
@@ -63,7 +63,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
             }
             catch (DbUpdateConcurrencyException)
             {
-                if (!DriverLicenceExists(DriverLicence.Id))
+                if (!DriverLicenceExists(DriverLicense.Id))
                 {
                     return NotFound();
                 }

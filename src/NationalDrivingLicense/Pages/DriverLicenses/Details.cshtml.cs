@@ -18,7 +18,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
             _context = context;
         }
 
-        public DriverLicense DriverLicence { get; set; }
+        public DriverLicense DriverLicense { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -27,9 +27,9 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
                 return NotFound();
             }
 
-            DriverLicence = await _context.DriverLicenses.FirstOrDefaultAsync(m => m.Id == id);
+            DriverLicense = await _context.DriverLicenses.FirstOrDefaultAsync(m => m.Id == id);
 
-            if (DriverLicence == null)
+            if (DriverLicense == null)
             {
                 return NotFound();
             }
