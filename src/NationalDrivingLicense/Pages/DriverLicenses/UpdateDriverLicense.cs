@@ -1,6 +1,5 @@
 ﻿using System;
 
-
 namespace NationalDrivingLicense.Pages.DriverLicenses
 {
     public class UpdateDriverLicense

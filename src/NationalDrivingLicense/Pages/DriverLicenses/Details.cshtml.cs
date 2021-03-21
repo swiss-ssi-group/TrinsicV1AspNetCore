@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -11,9 +9,9 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
 {
     public class DetailsModel : PageModel
     {
-        private readonly NationalDrivingLicense.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
 
-        public DetailsModel(NationalDrivingLicense.Data.ApplicationDbContext context)
+        public DetailsModel(ApplicationDbContext context)
         {
             _context = context;
         }
@@ -33,6 +31,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
             {
                 return NotFound();
             }
+
             return Page();
         }
     }
