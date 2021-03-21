@@ -31,9 +31,9 @@ namespace NationalDrivingLicense
 
             var driverLicense = await _driverLicenseProvider.GetDriverLicense(username);
 
-            if (!string.IsNullOrEmpty(driverLicense.DriverLicenceCredentials))
+            if (!string.IsNullOrEmpty(driverLicense.DriverLicenseCredentials))
             {
-                return driverLicense.DriverLicenceCredentials;
+                return driverLicense.DriverLicenseCredentials;
             }
 
             string connectionId = null; // Can be null | <connection identifier>
@@ -55,7 +55,7 @@ namespace NationalDrivingLicense
                     CredentialValues = credentialValues
                 });
 
-            driverLicense.DriverLicenceCredentials = credential.OfferUrl;
+            driverLicense.DriverLicenseCredentials = credential.OfferUrl;
             await _driverLicenseProvider.UpdateDriverLicense(driverLicense);
 
             return credential.OfferUrl;

@@ -20,11 +20,11 @@ namespace NationalDrivingLicense
         {
             if (!string.IsNullOrEmpty(username))
             {
-                var driverLicence = await _applicationDbContext.DriverLicences.FirstOrDefaultAsync(
+                var driverLicense = await _applicationDbContext.DriverLicenses.FirstOrDefaultAsync(
                     dl => dl.UserName == username && dl.Valid == true
                 );
 
-                if (driverLicence != null)
+                if (driverLicense != null)
                 {
                     return true;
                 }
@@ -33,18 +33,18 @@ namespace NationalDrivingLicense
             return false;
         }
 
-        public async Task<DriverLicence> GetDriverLicense(string username)
+        public async Task<DriverLicense> GetDriverLicense(string username)
         {
-            var driverLicence = await _applicationDbContext.DriverLicences.FirstOrDefaultAsync(
+            var driverLicense = await _applicationDbContext.DriverLicenses.FirstOrDefaultAsync(
                     dl => dl.UserName == username && dl.Valid == true
                 );
 
-            return driverLicence;
+            return driverLicense;
         }
 
-        public async Task UpdateDriverLicense(DriverLicence driverLicense)
+        public async Task UpdateDriverLicense(DriverLicense driverLicense)
         {
-            _applicationDbContext.DriverLicences.Update(driverLicense);
+            _applicationDbContext.DriverLicenses.Update(driverLicense);
             await _applicationDbContext.SaveChangesAsync();
         }
     }

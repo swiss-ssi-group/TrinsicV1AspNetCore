@@ -20,7 +20,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
         }
 
         [BindProperty]
-        public UpdateDriverLicence DriverLicence { get; set; }
+        public UpdateDriverLicense DriverLicence { get; set; }
 
         public async Task<IActionResult> OnGetAsync(Guid? id)
         {
@@ -29,9 +29,9 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
                 return NotFound();
             }
 
-            var driverLicence = await _context.DriverLicences.FirstOrDefaultAsync(m => m.Id == id);
+            var driverLicence = await _context.DriverLicenses.FirstOrDefaultAsync(m => m.Id == id);
 
-            DriverLicence = new UpdateDriverLicence
+            DriverLicence = new UpdateDriverLicense
             {
                 Id = driverLicence.Id,
                 FirstName = driverLicence.FirstName,
@@ -54,7 +54,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
                 return Page();
             }
 
-            var toSave = await _context.DriverLicences.FirstOrDefaultAsync(m => m.Id == DriverLicence.Id);
+            var toSave = await _context.DriverLicenses.FirstOrDefaultAsync(m => m.Id == DriverLicence.Id);
             toSave.Valid = DriverLicence.Valid;
 
             try
@@ -78,7 +78,7 @@ namespace NationalDrivingLicense.Pages.DriverLicenses
 
         private bool DriverLicenceExists(Guid id)
         {
-            return _context.DriverLicences.Any(e => e.Id == id);
+            return _context.DriverLicenses.Any(e => e.Id == id);
         }
     }
 }

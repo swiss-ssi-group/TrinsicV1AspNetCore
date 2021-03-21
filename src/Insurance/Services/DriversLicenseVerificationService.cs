@@ -76,7 +76,7 @@ namespace Insurance.Services
         }
     }
 
-    //internal class DriverLicence
+    //internal class DriverLicense
     //{
     //    public Guid Id { get; set; }
     //    public Guid ApplicationUserId { get; set; }
@@ -86,6 +86,6 @@ namespace Insurance.Services
     //    public DateTimeOffset DateOfBirth { get; set; }
     //    public string Issuedby { get; set; }
     //    public bool Valid { get; set; }
-    //    public string DriverLicenceCredentials { get; set; }
+    //    public string DriverLicenseCredentials { get; set; }
     //}
 }
