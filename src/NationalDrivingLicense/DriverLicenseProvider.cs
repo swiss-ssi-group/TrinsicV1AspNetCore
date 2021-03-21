@@ -10,8 +10,6 @@ namespace NationalDrivingLicense
     {
         private readonly ApplicationDbContext _applicationDbContext;
 
-        private DriverLicence _driverLicence { get; set; }
-
         public DriverLicenseProvider(ApplicationDbContext applicationDbContext,
             IConfiguration configuration)
         {
@@ -20,11 +18,6 @@ namespace NationalDrivingLicense
 
         public async Task<bool> HasIdentityDriverLicense(string username)
         {
-            if (_driverLicence != null)
-            {
-                return true;
-            }
-
             if (!string.IsNullOrEmpty(username))
             {
                 var driverLicence = await _applicationDbContext.DriverLicences.FirstOrDefaultAsync(
@@ -33,8 +26,6 @@ namespace NationalDrivingLicense
 
                 if (driverLicence != null)
                 {
-                    // cache this in the service (scoped service)
-                    _driverLicence = driverLicence;
                     return true;
                 }
             }
@@ -44,12 +35,11 @@ namespace NationalDrivingLicense
 
         public async Task<DriverLicence> GetDriverLicense(string username)
         {
-            if (!await HasIdentityDriverLicense(username))
-            {
-                throw new ArgumentException("user has no valid driver license");
-            }
+            var driverLicence = await _applicationDbContext.DriverLicences.FirstOrDefaultAsync(
+                    dl => dl.UserName == username && dl.Valid == true
+                );
 
-            return _driverLicence;
+            return driverLicence;
         }
 
         public async Task UpdateDriverLicense(DriverLicence driverLicense)
