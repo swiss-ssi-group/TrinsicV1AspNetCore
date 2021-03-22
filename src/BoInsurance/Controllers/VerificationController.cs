@@ -1,8 +1,6 @@
 ﻿using Insurance.Services;
 using Microsoft.AspNetCore.Mvc;
-using System;
 using System.Threading.Tasks;
-using Trinsic.ServiceClients;
 
 namespace Insurance.Controllers
 {
@@ -32,12 +30,19 @@ namespace Insurance.Controllers
         [Route("[action]")]
         public async Task<IActionResult> CreateVerification()
         {
+            // test UI without verify credential call
+            //return Ok(new
+            //{
+            //    verificationId = "test",
+            //    verificationUrl = "www.damienbod.com"
+            //});
+
             // pay 1 credential
             var verificationRequest = await _diversLicenseVerificationService.CreateVerificationRequest();
             return Ok(new
             {
                 verificationId = verificationRequest.verificationId,
-                verificationUrl = $"https://chart.googleapis.com/chart?cht=qr&chl={verificationRequest.verificationUrl}&chs=300x300&chld=L|1"
+                verificationUrl = $"{verificationRequest.verificationUrl}"
             });
         }
     }
