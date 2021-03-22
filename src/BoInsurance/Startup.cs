@@ -29,8 +29,8 @@ namespace Insurance
                 // options.ProviderKey = providerKey;
             });
 
-            //services.AddScoped<IDriversLicenseVerificationService, DriversLicenseVerificationMockService>();
-            services.AddScoped<IDriversLicenseVerificationService, DriversLicenseVerificationService>();
+            services.AddScoped<IDriversLicenseVerificationService, DriversLicenseVerificationMockService>();
+            //services.AddScoped<IDriversLicenseVerificationService, DriversLicenseVerificationService>();
 
             services.AddRazorPages();
             services.AddControllers();
