@@ -18,24 +18,18 @@ namespace Insurance
         public IConfiguration Configuration { get; }
         public IWebHostEnvironment Environment { get; }
 
-        // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddTrinsicClient(options =>
             {
-                // For CredentialsClient and WalletClient
+                // For CredentialsClient and WalletClient // Insurance API Key
+                // API key of Bo Insurance (Organisation which does the verification)
                 options.AccessToken = Configuration["Trinsic:ApiKey"];
                 // For ProviderClient
                 // options.ProviderKey = providerKey;
             });
 
             services.AddScoped<DriversLicenseVerificationService>();
-
-            // ngronk is required so that we can receive webhooks
-            //if (Environment.IsDevelopment())
-            //{
-            //    services.AddNGrok();
-            //}
 
             services.AddRazorPages();
             services.AddControllers();
@@ -47,23 +41,11 @@ namespace Insurance
             if (env.IsDevelopment())
             {
                 app.UseDeveloperExceptionPage();
-                //app.UseNGrokAutomaticUrlDetection();
-
-                //var ngrokservice = app.ApplicationServices.GetService<INGrokHostedService>();
-                //ngrokservice.Ready += async obj => {
-                //    var credentialsServiceClient = app.ApplicationServices.GetService<ICredentialsServiceClient>();
-                //    var webhookContract = await credentialsServiceClient.CreateWebhookAsync(new WebhookParameters
-                //    {
-                //        Url = $"{obj.First(x => x.Proto.Equals("http")).PublicUrl}/api/webhook",
-                //        Type = "Notification"
-                //    });
-                //};
             }
             else
             {
                 app.UseHttpsRedirection();
                 app.UseExceptionHandler("/Error");
-                // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
                 app.UseHsts();
             }
 

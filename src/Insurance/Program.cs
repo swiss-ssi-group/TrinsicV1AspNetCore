@@ -1,5 +1,3 @@
-using FluffySpoon.AspNet.NGrok;
-using FluffySpoon.AspNet.NGrok.NGrokModels;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Hosting;
@@ -17,8 +15,6 @@ namespace Insurance
             Host.CreateDefaultBuilder(args)
                 .ConfigureAppConfiguration((hostContext, builder) =>
                 {
-                    // Add other providers for JSON, etc.
-
                     if (hostContext.HostingEnvironment.IsDevelopment())
                     {
                         builder.AddUserSecrets<Program>();
@@ -27,7 +23,6 @@ namespace Insurance
                 .ConfigureWebHostDefaults(webBuilder =>
                 {
                     webBuilder.UseStartup<Startup>();
-                    //webBuilder.UseNGrok(new NgrokOptions { ShowNGrokWindow = true });
                 });
     }
 }
