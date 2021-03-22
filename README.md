@@ -4,6 +4,36 @@
 
 # Self Sovereign Identity (SSI)
 
+# Testing and running the applications
+
+## User secrets NationalDrivingLicense
+
+```json
+{
+  "ConnectionStrings": {
+    "DefaultConnection": "--db-connection-string--"
+  },
+  "Trinsic": {
+    "ApiKey":  "--your-api-key-organisation--",
+    "TemplateDefinitionId": "--Template-credential-definition-id--"
+  }
+}
+```
+
+## User secrets BoInsurance
+
+```json
+{
+  "Trinsic": {
+    // API key of Bo Insurance (Organisation which does the verification)
+    "ApiKey": "--your-api-key-organisation--",
+    "NationalDrivingLicense": {
+      "DID": "--your-DID-from-credential-issuer--"
+    }
+  }
+}
+```
+
 ## Links
 
 https://studio.trinsic.id/
