@@ -25,8 +25,7 @@
 ```json
 {
   "Trinsic": {
-    // API key of Bo Insurance (Organisation which does the verification)
-    "ApiKey": "--your-api-key-organisation--",
+    "ApiKey": "--your-api-key-organisation-which-does-the-verification--",
     "NationalDrivingLicense": {
       "DID": "--your-DID-from-credential-issuer--"
     }
