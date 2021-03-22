@@ -1,17 +1,11 @@
 using NationalDrivingLicense.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.AspNetCore.Identity.UI;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity.UI.Services;
 
 namespace NationalDrivingLicense
@@ -33,6 +27,7 @@ namespace NationalDrivingLicense
             services.AddTrinsicClient(options =>
             {
                 // For CredentialsClient and WalletClient
+                // API key of National Driving License (Organisation which does the verification)
                 options.AccessToken = Configuration["Trinsic:ApiKey"];
                 // For ProviderClient
                 // options.ProviderKey = providerKey;
