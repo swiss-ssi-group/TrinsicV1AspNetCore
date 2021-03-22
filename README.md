@@ -4,6 +4,8 @@
 
 # Self Sovereign Identity (SSI)
 
+Self Sovereign Identity example for credential issuer and credential verification using ASP.NET Core
+
 # Testing and running the applications
 
 ## User secrets NationalDrivingLicense
