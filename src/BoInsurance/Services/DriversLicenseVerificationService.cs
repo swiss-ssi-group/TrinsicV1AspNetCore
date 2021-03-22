@@ -6,7 +6,7 @@ using Trinsic.ServiceClients.Models;
 
 namespace Insurance.Services
 {
-    public class DriversLicenseVerificationService
+    public class DriversLicenseVerificationService : IDriversLicenseVerificationService
     {
         private readonly ICredentialsServiceClient _credentialsServiceClient;
         private readonly string _issuerDid;

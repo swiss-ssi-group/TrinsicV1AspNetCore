@@ -8,9 +8,9 @@ namespace Insurance.Controllers
     [Route("/api/[controller]")]
     public class VerificationController : Controller
     {
-        private readonly DriversLicenseVerificationService _diversLicenseVerificationService;
+        private readonly IDriversLicenseVerificationService _diversLicenseVerificationService;
 
-        public VerificationController(DriversLicenseVerificationService diversLicenseVerificationService)
+        public VerificationController(IDriversLicenseVerificationService diversLicenseVerificationService)
         {
             _diversLicenseVerificationService = diversLicenseVerificationService;
         }
@@ -30,14 +30,6 @@ namespace Insurance.Controllers
         [Route("[action]")]
         public async Task<IActionResult> CreateVerification()
         {
-            // test UI without verify credential call
-            //return Ok(new
-            //{
-            //    verificationId = "test",
-            //    verificationUrl = "www.damienbod.com"
-            //});
-
-            // pay 1 credential
             var verificationRequest = await _diversLicenseVerificationService.CreateVerificationRequest();
             return Ok(new
             {
