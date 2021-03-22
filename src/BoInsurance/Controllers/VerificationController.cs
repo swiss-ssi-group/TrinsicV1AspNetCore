@@ -42,7 +42,7 @@ namespace Insurance.Controllers
             return Ok(new
             {
                 verificationId = verificationRequest.verificationId,
-                verificationUrl = $"{verificationRequest.verificationUrl}"
+                verificationUrl = verificationRequest.verificationUrl
             });
         }
     }
