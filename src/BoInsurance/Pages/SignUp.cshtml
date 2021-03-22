@@ -1,0 +1,81 @@
+﻿@page "/signup"
+
+@model BoInsurance.Pages.SignUpModel
+
+@{
+    ViewData["Title"] = "Sign Up";
+}
+
+<div class="card">
+    <h5 class="card-header">Sign Up Form</h5>
+    <div class="card-body">
+        <p>Please provide us with your address so that we can create a contract for you.</p>
+        <form id="signUpForm" method="POST">
+            <input type="hidden" asp-for="@Model.Input.VerificationId" />
+            <div class="form-group">
+                <label asp-for="@Model.Input.Name"></label>
+                <input class="form-control" asp-for="@Model.Input.Name" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Input.FirstName"></label>
+                <input class="form-control" asp-for="@Model.Input.FirstName" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Input.Address"></label>
+                <input class="form-control" asp-for="@Model.Input.Address" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Input.Zip"></label>
+                <input class="form-control" asp-for="@Model.Input.Zip" />
+            </div>
+            <div class="form-group">
+                <label asp-for="@Model.Input.City"></label>
+                <input class="form-control" asp-for="@Model.Input.City" />
+            </div>
+            <div class="form-group d-flex flex-column align-items-center">
+                <p id="qrCodeLabel">Scan the following QR Code with your Wallet app.</p>
+                <div id="qrCode" class="qr"></div>
+                <div id="success" class="text-center" style="display: none;">
+                    <img width="300" src="~/check-mark-icon-vector.jpg" />
+                    <p>Thank you for your verification. You may now submit the form.</p>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+
+    <script>
+        $(function () {
+            new QRCode(document.getElementById('qrCode'),
+            {
+                text: '@Model.VerificationUrl',
+                width: 300,
+                height: 300
+            });
+
+            // Start polling so that we know when we can move on
+            var intervalId = setInterval(function () {
+                console.log('Checking verification status');
+                $.ajax({
+                    url: '@(Url.ActionLink("CheckStatus", "Verification", new { verificationId = Model.Input.VerificationId}))',
+                    success: function (data) {
+                        console.log(JSON.stringify(data));
+                        if (data.state === "accepted") {
+                            clearInterval(intervalId);
+
+                            console.log('Thank you for your verification!');
+
+                            $('#qrCode').hide();
+                            $('#qrCodeLabel').hide();
+                            $('#success').show();
+                        }
+                    }
+                });
+            }, 2000);
+        });
+    </script>
+    <script src="~/js/qrcode.min.js"></script>
+} 
