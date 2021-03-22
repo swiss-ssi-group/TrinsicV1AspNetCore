@@ -14,7 +14,7 @@ namespace Insurance.Services
         public DriversLicenseVerificationService(ICredentialsServiceClient credentialsServiceClient, IConfiguration configuration)
         {
             _credentialsServiceClient = credentialsServiceClient;
-            _issuerDid = configuration["Trinsic:DMV:DID"];
+            _issuerDid = configuration["Trinsic:NationalDrivingLicense:DID"];
         }
 
         public async Task<(string verificationId, string verificationUrl)> CreateVerificationRequest()
@@ -24,10 +24,15 @@ namespace Insurance.Services
             {
                 new VerificationPolicyAttributeContract()
                 {
-                    PolicyName = "Driver License Policy", // Name for policy
+                    PolicyName = "National Driver License Policy",
                     AttributeNames = new List<string>()
                     {
-                        "Full Name"
+                        "Issued At",
+                        "Name",
+                        "First Name",
+                        "Date of Birth",
+                        "License Type"
+
                     }, // List of names of attributes to request
                     Restrictions = new List<VerificationPolicyRestriction>()
                     {
@@ -75,17 +80,4 @@ namespace Insurance.Services
             return verificationContract.State.ToLower();
         }
     }
-
-    //internal class DriverLicense
-    //{
-    //    public Guid Id { get; set; }
-    //    public Guid ApplicationUserId { get; set; }
-    //    public DateTimeOffset IssuedAt { get; set; }
-    //    public string Name { get; set; }
-    //    public string FirstName { get; set; }
-    //    public DateTimeOffset DateOfBirth { get; set; }
-    //    public string Issuedby { get; set; }
-    //    public bool Valid { get; set; }
-    //    public string DriverLicenseCredentials { get; set; }
-    //}
 }

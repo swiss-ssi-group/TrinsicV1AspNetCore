@@ -32,6 +32,7 @@ namespace Insurance.Controllers
         [Route("[action]")]
         public async Task<IActionResult> StartRequest()
         {
+            // pay 1 credential
             var verificationRequest = await _diversLicenseVerificationService.CreateVerificationRequest();
             return Ok(new
             {
