@@ -49,7 +49,7 @@ namespace NationalDrivingLicense
             CredentialContract credential = await _credentialServiceClient
                 .CreateCredentialAsync(new CredentialOfferParameters
                 {
-                    DefinitionId = _configuration["Trinsic:TemplateDefinitionId"],
+                    DefinitionId = _configuration["Trinsic:CredentialTemplateDefinitionId"],
                     ConnectionId = connectionId,
                     AutomaticIssuance = automaticIssuance,
                     CredentialValues = credentialValues

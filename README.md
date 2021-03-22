@@ -15,7 +15,7 @@
   },
   "Trinsic": {
     "ApiKey":  "--your-api-key-organisation--",
-    "TemplateDefinitionId": "--Template-credential-definition-id--"
+    "CredentialTemplateDefinitionId": "--Template-credential-definition-id--"
   }
 }
 ```
