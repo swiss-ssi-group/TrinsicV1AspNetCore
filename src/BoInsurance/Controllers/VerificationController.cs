@@ -26,7 +26,7 @@ namespace Insurance.Controllers
             return Ok(new { state = verificationState });
         }
 
-        [HttpGet]
+        [HttpPost]
         [Route("[action]")]
         public async Task<IActionResult> CreateVerification()
         {
