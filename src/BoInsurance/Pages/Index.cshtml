@@ -48,7 +48,7 @@
                     <span class="sr-only">Loading...</span>
                 </div>
                 <img id="qrCode" style="display: none" alt="QR Code" />
-                <img id="success" width="300" style="display: none;" src="https://static.vecteezy.com/system/resources/previews/000/572/885/original/check-mark-icon-vector.jpg" />
+                <img id="success" width="300" style="display: none;" src="~/check-mark-icon-vector.jpg" />
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -71,7 +71,7 @@
 
             $('#myModal').on('shown.bs.modal', function () {
                 $.ajax({
-                    url: '@(Url.ActionLink("StartRequest", "Verification"))',
+                    url: '@(Url.ActionLink("CreateVerification", "Verification"))',
                     success: function (data) {
                         if (data.verificationUrl.length > 0) {
                             $('#qrCode').attr('src', data.verificationUrl);
@@ -102,5 +102,19 @@
             });
         });
     </script>
+    <script src="~/js/qrcode.min.js"></script>
+    @*<script type="text/javascript">
+        new QRCode(document.getElementById("qrCode"),
+            {
+                text: "@Html.Raw(Model.Data)",
+                width: 300,
+                height: 300
+            });
+
+    $(document).ready(() => {
+        document.getElementById('verification_check').click();
+    });
+
+    </script>*@
 
 } 
