@@ -22,7 +22,7 @@ namespace Insurance.Controllers
             var verificationState = await _diversLicenseVerificationService.GetVerificationState(verificationId);
 
             // IDEA: After we have verified the user we could create an account for him
-             
+
             return Ok(new { state = verificationState });
         }
 

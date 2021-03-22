@@ -32,7 +32,6 @@ namespace Insurance.Services
                         "First Name",
                         "Date of Birth",
                         "License Type"
-
                     }, // List of names of attributes to request
                     Restrictions = new List<VerificationPolicyRestriction>()
                     {
