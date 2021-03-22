@@ -46,7 +46,8 @@ namespace BoInsurance.Pages
 
         public IActionResult OnPost([FromBody] InputModel input)
         {
-            // Implement your custom logic here...
+            // Implement your custom logic here..
+            // Make sure the VerificationId was accepted...
             // For example create an account for the user and allow him to login to the insurance applicaiton with his driver license.
 
             return RedirectToPage("/Index");
