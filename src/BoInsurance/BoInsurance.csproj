@@ -1,0 +1,12 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+    <UserSecretsId>10264bbe-7d7d-451d-adfb-3b2e7a7111c3</UserSecretsId>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Trinsic.ServiceClients" Version="1.1.5018" />
+  </ItemGroup>
+
+</Project>
