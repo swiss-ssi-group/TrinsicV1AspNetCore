@@ -6,5 +6,7 @@ namespace Insurance.Services
     {
         Task<(string verificationId, string verificationUrl)> CreateVerificationRequest();
         Task<string> GetVerificationState(string verificationId);
+
+        Task<string> GetVerification(string verificationId);
     }
 }
