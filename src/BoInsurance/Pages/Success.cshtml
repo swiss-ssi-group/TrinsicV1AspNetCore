@@ -1,0 +1,33 @@
+﻿@page "/success/{verificationId}"
+@model BoInsurance.Pages.SuccessModel
+
+
+@{ ViewData["Title"] = "Success"; }
+
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="text-center">
+                <br />
+                <h4>You have successfully created a new car insurance with us.</h4>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-12">
+            <div class="card">
+                <div class="card-header">
+                    Verification Response
+                </div>
+                <div class="card-body">
+                    <p class="m-0">
+                        <code>
+                            @Model.JsonResponse
+                        </code>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

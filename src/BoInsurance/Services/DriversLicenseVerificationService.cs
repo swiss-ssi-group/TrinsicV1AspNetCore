@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Trinsic.ServiceClients;
@@ -71,6 +72,12 @@ namespace Insurance.Services
                 });
 
             return (verificationId: verificationContract.VerificationId, verificationUrl: verificationContract.VerificationRequestUrl);
+        }
+
+        public async Task<string> GetVerification(string verificationId)
+        {
+            var verificationContract = await _credentialsServiceClient.GetVerificationAsync(verificationId);
+            return JsonConvert.SerializeObject(verificationContract, Formatting.Indented);
         }
 
         public async Task<string> GetVerificationState(string verificationId)
