@@ -46,3 +46,5 @@ https://github.com/trinsic-id/verifier-reference-app
 https://docs.trinsic.id/docs/tutorial
 
 https://sovrin.org/faq/what-is-self-sovereign-identity/
+
+https://techcommunity.microsoft.com/t5/identity-standards-blog/ion-we-have-liftoff/ba-p/1441555
