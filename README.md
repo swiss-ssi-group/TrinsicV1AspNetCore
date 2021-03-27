@@ -6,9 +6,13 @@
 
 Self Sovereign Identity example for credential issuer and credential verification using ASP.NET Core
 
-# Testing and running the applications
+## Blogs
 
-## User secrets NationalDrivingLicense
+Creating Verifiable credentials in ASP.NET Core for decentralized identities
+
+## Testing and running the applications
+
+### User secrets NationalDrivingLicense
 
 ```json
 {
@@ -22,7 +26,7 @@ Self Sovereign Identity example for credential issuer and credential verificatio
 }
 ```
 
-## User secrets BoInsurance
+### User secrets BoInsurance
 
 ```json
 {
