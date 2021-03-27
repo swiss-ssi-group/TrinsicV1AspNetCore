@@ -56,3 +56,5 @@ https://github.com/Azure-Samples/active-directory-verifiable-credentials
 https://www.microsoft.com/en/security/business/identity-access-management/decentralized-identity-blockchain
 
 https://github.com/decentralized-identity/ion
+
+https://bitbucket.org/openid/connect/src/master/openid-connect-self-issued-v2-1_0.md
