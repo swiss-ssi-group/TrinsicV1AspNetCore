@@ -62,3 +62,7 @@ https://www.microsoft.com/en/security/business/identity-access-management/decent
 https://github.com/decentralized-identity/ion
 
 https://bitbucket.org/openid/connect/src/master/openid-connect-self-issued-v2-1_0.md
+
+https://www.lfph.io/wp-content/uploads/2021/02/Verifiable-Credentials-Flavors-Explained.pdf
+
+https://techcommunity.microsoft.com/t5/identity-standards-blog/new-explorations-in-secret-recovery/ba-p/1441550
