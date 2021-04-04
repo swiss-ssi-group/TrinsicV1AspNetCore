@@ -1,8 +1,11 @@
 ﻿@using Microsoft.AspNetCore.Authorization
 @using Microsoft.AspNetCore.Identity
+@using Microsoft.Extensions.Configuration
+@inject IConfiguration Configuration
 @inject SignInManager<IdentityUser> SignInManager
 @inject UserManager<IdentityUser> UserManager
 @inject IAuthorizationService AuthorizationService
+
 
 <!DOCTYPE html>
 <html lang="en">
@@ -10,8 +13,8 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewData["Title"] - National Driving License</title>
-    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" />
+    <link rel="stylesheet" href="~/css/vendor.min.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/css/fontawesome-free-5.15.2-web/css/all.min.css" asp-append-version="true" />
 </head>
 <body>
@@ -33,6 +36,17 @@
                             @if ((AuthorizationService.AuthorizeAsync(User, "TwoFactorEnabled")).Result.Succeeded)
                             {
                                 <li class="nav-item">
+                                    <a class="nav-link text-dark" asp-area="" asp-page="/DriverLicenseCredentials"
+                                       id="tooltip-car"
+                                       data-toggle="tooltip"
+                                       data-placement="bottom"
+                                       title="View you actual drivers license and view, get credentials">
+                                        <i class="fa fa-car" aria-hidden="true"></i>
+                                        View Driver License
+                                    </a>
+
+                                </li>
+                                <li class="nav-item">
                                     <a class="nav-link text-dark" asp-area="" asp-page="/Admin">License Administration</a>
                                 </li>
                             }
@@ -49,17 +63,12 @@
                                     </a>
 
                                 </li>
-                                <li class="nav-item">
-                                    <a class="nav-link text-dark" asp-area="" asp-page="/Admin"
-                                       id="tooltip-demo"
-                                       data-toggle="tooltip"
-                                       data-placement="bottom"
-                                       title="MFA is NOT enabled. This is required for the Admin Page. If you have activated MFA, then logout, login again.">
-                                        <i class="fa fa-exclamation-triangle" aria-hidden="true"></i>
-                                        License Administration
-                                    </a>
-
-                                </li>
+                                @if (Configuration["MfaRequiredForAdmin"] == "False")
+                                {
+                                    <li class="nav-item">
+                                        <a class="nav-link text-dark" asp-area="" asp-page="/Admin">License Administration</a>
+                                    </li>
+                                }
                             }
                         }
                     </ul>
@@ -79,10 +88,9 @@
         </div>
     </footer>
 
-    <script src="~/lib/jquery/dist/jquery.min.js"></script>
-    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
-    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/vendor.min.js" asp-append-version="true"></script>
+    <script src="~/js/site.min.js" asp-append-version="true"></script>
 
-    @RenderSection("Scripts", required: false)
+    @RenderSection("scripts", required: false)
 </body>
 </html>
