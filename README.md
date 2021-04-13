@@ -9,6 +9,7 @@ Self Sovereign Identity example for credential issuer and credential verificatio
 ## Blogs
 
 - [Creating Verifiable credentials in ASP.NET Core for decentralized identities using Trinsic](https://damienbod.com/2021/04/05/creating-verifiable-credentials-in-asp-net-core-for-decentralized-identities-using-trinsic/) by Damien
+- [Verifying Verifiable Credentials in ASP.NET Core for Decentralized Identities using Trinsic](https://ml-software.ch/posts/verifiying-verifiable-credentials-using-trinsic) by Matteo
 
 ## Testing and running the applications
 
