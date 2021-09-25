@@ -1,6 +1,5 @@
 
-[![.NET](https://github.com/Franklin89/SSI-Sample/workflows/.NET/badge.svg)](https://github.com/Franklin89/SSI-Sample/actions?query=workflow%3A.NET) 
-
+[![.NET](https://github.com/swiss-ssi-group/TrinsicAspNetCore/actions/workflows/dotnet.yml/badge.svg)](https://github.com/swiss-ssi-group/TrinsicAspNetCore/actions/workflows/dotnet.yml)
 
 # Self Sovereign Identity (SSI)
 
