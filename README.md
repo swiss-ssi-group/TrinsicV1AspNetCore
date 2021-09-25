@@ -1,6 +1,5 @@
 
-[![.NET](https://github.com/Franklin89/SSI-Sample/workflows/.NET/badge.svg)](https://github.com/Franklin89/SSI-Sample/actions?query=workflow%3A.NET) 
-
+[![.NET](https://github.com/swiss-ssi-group/TrinsicAspNetCore/actions/workflows/dotnet.yml/badge.svg)](https://github.com/swiss-ssi-group/TrinsicAspNetCore/actions/workflows/dotnet.yml)
 
 # Self Sovereign Identity (SSI)
 
@@ -8,10 +7,13 @@ Self Sovereign Identity example for credential issuer and credential verificatio
 
 ## Blogs
 
-
 - [Getting started with Self Sovereign Identity SSI](https://damienbod.com/2021/03/29/getting-started-with-self-sovereign-identity-ssi/) by Damien
 - [Creating Verifiable credentials in ASP.NET Core for decentralized identities using Trinsic](https://damienbod.com/2021/04/05/creating-verifiable-credentials-in-asp-net-core-for-decentralized-identities-using-trinsic/) by Damien
 - [Verifying Verifiable Credentials in ASP.NET Core for Decentralized Identities using Trinsic](https://ml-software.ch/posts/verifiying-verifiable-credentials-using-trinsic) by Matteo
+
+## History
+
+2021-09-25 Updated packages
 
 ## Testing and running the applications
 
