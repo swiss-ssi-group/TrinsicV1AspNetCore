@@ -10,6 +10,7 @@ Self Sovereign Identity example for credential issuer and credential verificatio
 - [Getting started with Self Sovereign Identity SSI](https://damienbod.com/2021/03/29/getting-started-with-self-sovereign-identity-ssi/) by Damien
 - [Creating Verifiable credentials in ASP.NET Core for decentralized identities using Trinsic](https://damienbod.com/2021/04/05/creating-verifiable-credentials-in-asp-net-core-for-decentralized-identities-using-trinsic/) by Damien
 - [Verifying Verifiable Credentials in ASP.NET Core for Decentralized Identities using Trinsic](https://ml-software.ch/posts/verifiying-verifiable-credentials-using-trinsic) by Matteo
+- [Challenges to Self Sovereign Identity](https://damienbod.com/2021/10/11/challenges-to-self-sovereign-identity/)
 
 ## History
 
